@@ -140,8 +140,7 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h1 id="后端-Git学习分享"><a href="#后端-Git学习分享" class="headerlink" title="后端 - Git学习分享"></a>后端 - Git学习分享</h1><p>[toc]</p>
-<p>@auther <code>张念磊</code><br>@date 2020/2/17</p>
+    <section class="markdown-content"><h1 id="后端-Git学习分享"><a href="#后端-Git学习分享" class="headerlink" title="后端 - Git学习分享"></a>后端 - Git学习分享</h1><p>@auther <code>张念磊</code><br>@date 2020/2/17</p>
 <h2 id="一个学习git的网站"><a href="#一个学习git的网站" class="headerlink" title="一个学习git的网站"></a>一个学习git的网站</h2><p><a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">https://learngitbranching.js.org/</a></p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 基础</span></span><br><span class="line">git checkout -b hotfix # 新建一个分支</span><br><span class="line"></span><br><span class="line">git checkout C2 # 分离head</span><br><span class="line">git branch -f master C2 # 将分支指向提交C2</span><br><span class="line">git branch -f master HEAD^ # 将master指向HEAD的上一个节点</span><br><span class="line">git branch -f master HEAD~3 # 将master指向HEAD的前面第三个节点</span><br><span class="line">git reset Head^ # 撤销一次本地提交</span><br><span class="line">git revert HEAD^ # 撤销一次远程提交</span><br><span class="line"></span><br><span class="line">git rebase master # 改变代码提交的顺序</span><br><span class="line">git cherry-pick C2 C3 # 将C2 C3次提交添加到当前分支 git cherry-pick 'commit id'  # 复制一个特定的提交到当前的分支</span><br><span class="line">git rebase -i HEAD~4 # 交互式rebase最近的4次提交</span><br></pre></td></tr></table></figure>
 <p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy53zzv41j30z50q90v5.jpg" alt="image-20200218102321108"></p>
@@ -177,14 +176,6 @@
         
   <a href="/tags#Git" >
     <span class="tag-code">Git</span>
-  </a>
-
-  <a href="/tags#rebase" >
-    <span class="tag-code">rebase</span>
-  </a>
-
-  <a href="/tags#cherry-pick" >
-    <span class="tag-code">cherry-pick</span>
   </a>
 
       </div>
