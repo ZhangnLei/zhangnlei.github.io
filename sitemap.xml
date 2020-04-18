@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/2020/04/18/%25E5%2590%258E%25E7%25AB%25AF-Git%25E5%25AD%25A6%25E4%25B9%25A0%25E5%2588%2586%25E4%25BA%25AB/</loc>
+    
+    <lastmod>2020-04-18T11:23:40.180Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/2020/04/18/%25E6%258A%2598%25E8%2585%25BE%25E4%25BA%2586%25E5%258D%258A%25E4%25B8%258B%25E5%258D%2588%25E6%2590%259E%25E5%25AE%259A%25E4%25BA%2586hexo%25EF%25BC%258C%25E8%25AE%25B0%25E5%25BD%2595%25E4%25B8%2580%25E4%25B8%258B/</loc>
     
-    <lastmod>2020-04-18T11:03:46.441Z</lastmod>
+    <lastmod>2020-04-18T11:20:43.537Z</lastmod>
     
   </url>
   
@@ -47,6 +54,13 @@
     <loc>http://yoursite.com/project/index.html</loc>
     
     <lastmod>2020-04-18T05:34:37.259Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite.com/2020/04/18/hello-world/</loc>
+    
+    <lastmod>2020-04-18T04:52:47.000Z</lastmod>
     
   </url>
   

@@ -10,7 +10,7 @@
   
   <title>
     
-      Vue - 滚动条滚动到最下方时更新 | 张念磊的博客
+      Hello World | 张念磊的博客
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -131,7 +131,7 @@
 </header>
 
     <div id="article-banner">
-  <h2>Vue - 滚动条滚动到最下方时更新</h2>
+  <h2>Hello World</h2>
   <p class="post-date">2020-04-18</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
@@ -140,25 +140,17 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p><code>代码展示</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">watchScroll() &#123;</span><br><span class="line">  <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> el = <span class="keyword">this</span>.$refs[<span class="string">"discussInfoBox"</span>];</span><br><span class="line">    <span class="keyword">const</span> offsetHeight = el.offsetHeight;</span><br><span class="line">    el.onscroll = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> scrollTop = el.scrollTop;</span><br><span class="line">      <span class="keyword">const</span> scrollHeight = el.scrollHeight;</span><br><span class="line">      <span class="keyword">if</span> (offsetHeight + scrollTop - scrollHeight &gt;= <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="comment">// 需要执行的代码</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"get info "</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p><code>使用步骤</code></p>
-<ol>
-<li>第三行中的<code>discussInfoBox</code>为要监听的div的ID</li>
-<li>在第十行编写当滚动条滚动到最下方时需要调用的函数</li>
-<li>在需要的地方调用该函数。例如created方法或其他监听事件中</li>
-</ol>
+    <section class="markdown-content"><p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 </section>
     <!-- Tags START -->
-    
-      <div class="tags">
-        <span>Tags:</span>
-        
-  <a href="/tags#Vue, 滚动条" >
-    <span class="tag-code">Vue, 滚动条</span>
-  </a>
-
-      </div>
     
     <!-- Tags END -->
     <!-- NAV START -->
@@ -166,17 +158,10 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2020/04/18/Vue-%E7%88%B6%E7%BB%84%E4%BB%B6%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0/">
-        <span class="nav-arrow">← </span>
-        
-          Vue - 父组件如何更新子组件的参数
-        
-      </a>
     
-    
-      <a class="nav-right" href="/2020/04/18/%E5%90%8E%E7%AB%AF-Git%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">
+      <a class="nav-right" href="/2020/04/18/We-all-wait-for-summer/">
         
-          后端 - Git学习分享
+          We all wait for summer
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -208,7 +193,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="nav">none</ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Quick-Start"><span class="toc-nav-text">Quick Start</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Create-a-new-post"><span class="toc-nav-text">Create a new post</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Run-server"><span class="toc-nav-text">Run server</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Generate-static-files"><span class="toc-nav-text">Generate static files</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#Deploy-to-remote-sites"><span class="toc-nav-text">Deploy to remote sites</span></a></li></ol></li></ol>
     
   </div>
 </aside>
@@ -218,7 +203,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2020/04/18/Vue-滚动条滚动到最下方时更新/';
+    var url = 'http://yoursite.com/2020/04/18/hello-world/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -280,7 +265,7 @@
     var gitmentConfig = "zhangnlei";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "Vue - 滚动条滚动到最下方时更新",
+        id: "Hello World",
         owner: "zhangnlei",
         repo: "zhangnlei.github.io",
         oauth: {
