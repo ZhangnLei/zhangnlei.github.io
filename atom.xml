@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-18T11:23:40.180Z</updated>
+  <updated>2020-04-18T11:35:23.689Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,9 +21,9 @@
     <link href="http://yoursite.com/2020/04/18/%E5%90%8E%E7%AB%AF-Git%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/"/>
     <id>http://yoursite.com/2020/04/18/后端-Git学习分享/</id>
     <published>2020-04-18T11:22:42.000Z</published>
-    <updated>2020-04-18T11:23:40.180Z</updated>
+    <updated>2020-04-18T11:35:23.689Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="后端-Git学习分享"><a href="#后端-Git学习分享" class="headerlink" title="后端 - Git学习分享"></a>后端 - Git学习分享</h1><p>[toc]</p><p>@auther <code>张念磊</code><br>@date 2020/2/17</p><h2 id="一个学习git的网站"><a href="#一个学习git的网站" class="headerlink" title="一个学习git的网站"></a>一个学习git的网站</h2><p><a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">https://learngitbranching.js.org/</a></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 基础</span></span><br><span class="line">git checkout -b hotfix # 新建一个分支</span><br><span class="line"></span><br><span class="line">git checkout C2 # 分离head</span><br><span class="line">git branch -f master C2 # 将分支指向提交C2</span><br><span class="line">git branch -f master HEAD^ # 将master指向HEAD的上一个节点</span><br><span class="line">git branch -f master HEAD~3 # 将master指向HEAD的前面第三个节点</span><br><span class="line">git reset Head^ # 撤销一次本地提交</span><br><span class="line">git revert HEAD^ # 撤销一次远程提交</span><br><span class="line"></span><br><span class="line">git rebase master # 改变代码提交的顺序</span><br><span class="line">git cherry-pick C2 C3 # 将C2 C3次提交添加到当前分支 git cherry-pick 'commit id'  # 复制一个特定的提交到当前的分支</span><br><span class="line">git rebase -i HEAD~4 # 交互式rebase最近的4次提交</span><br></pre></td></tr></table></figure><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy53zzv41j30z50q90v5.jpg" alt="image-20200218102321108"></p><p>示例 ： 把分支以图像的方式展现给用户</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy542q42ej30ql0fggn3.jpg" alt="image-20200218220559729"></p><h3 id="通关截图"><a href="#通关截图" class="headerlink" title="通关截图"></a>通关截图</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy5414r55j30yq0rtmzv.jpg" alt="image-20200218225905225"></p><p>主要介绍的两个命令 rebase cherry-pick </p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy53yvq4nj30q00pj0um.jpg" alt="image-20200327160103150"></p><h2 id="配置别名"><a href="#配置别名" class="headerlink" title="配置别名"></a>配置别名</h2><p>有没有经常敲错命令？比如<code>git status</code></p><p>如果敲<code>git st</code>就表示<code>git status</code>那就简单多了，当然这种偷懒的办法我们是极力赞成的。</p><p>我们只需要敲一行命令，告诉Git，以后<code>st</code>就表示<code>status</code>：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global alias.st status</span><br></pre></td></tr></table></figure><p>好了，现在敲<code>git st</code>看看效果。</p><p>当然还有别的命令可以简写，很多人都用<code>co</code>表示<code>checkout</code>，<code>ci</code>表示<code>commit</code>，<code>br</code>表示<code>branch</code>：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global alias.co checkout</span><br><span class="line">$ git config --global alias.ci commit</span><br><span class="line">$ git config --global alias.br branch</span><br></pre></td></tr></table></figure><p>提交就可以简写成：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git ci -m &quot;bala bala bala...&quot;</span><br></pre></td></tr></table></figure><p><code>--global</code>参数是全局参数，也就是这些命令在这台电脑的所有Git仓库下都有用。</p><p><code>git log</code></p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy53zj3urj317w0u0dke.jpg" alt="image-20200327154624267"></p><p>甚至还有人丧心病狂地把<code>lg</code>配置成了：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.lg &quot;log --color --graph --pretty&#x3D;format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit&quot;</span><br></pre></td></tr></table></figure><p>来看看<code>git lg</code>的效果：</p><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd8j6l772pj317w0u015d.jpg" alt="image-20200327154509668" style="zoom: 50%;" /></p>]]></content>
+    <content type="html"><![CDATA[<h1 id="后端-Git学习分享"><a href="#后端-Git学习分享" class="headerlink" title="后端 - Git学习分享"></a>后端 - Git学习分享</h1><p>[toc]</p><p>@auther <code>张念磊</code><br>@date 2020/2/17</p><h2 id="一个学习git的网站"><a href="#一个学习git的网站" class="headerlink" title="一个学习git的网站"></a>一个学习git的网站</h2><p><a href="https://learngitbranching.js.org/" target="_blank" rel="noopener">https://learngitbranching.js.org/</a></p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 基础</span></span><br><span class="line">git checkout -b hotfix # 新建一个分支</span><br><span class="line"></span><br><span class="line">git checkout C2 # 分离head</span><br><span class="line">git branch -f master C2 # 将分支指向提交C2</span><br><span class="line">git branch -f master HEAD^ # 将master指向HEAD的上一个节点</span><br><span class="line">git branch -f master HEAD~3 # 将master指向HEAD的前面第三个节点</span><br><span class="line">git reset Head^ # 撤销一次本地提交</span><br><span class="line">git revert HEAD^ # 撤销一次远程提交</span><br><span class="line"></span><br><span class="line">git rebase master # 改变代码提交的顺序</span><br><span class="line">git cherry-pick C2 C3 # 将C2 C3次提交添加到当前分支 git cherry-pick 'commit id'  # 复制一个特定的提交到当前的分支</span><br><span class="line">git rebase -i HEAD~4 # 交互式rebase最近的4次提交</span><br></pre></td></tr></table></figure><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy53zzv41j30z50q90v5.jpg" alt="image-20200218102321108"></p><p>示例 ： 把分支以图像的方式展现给用户</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy542q42ej30ql0fggn3.jpg" alt="image-20200218220559729"></p><h3 id="通关截图"><a href="#通关截图" class="headerlink" title="通关截图"></a>通关截图</h3><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy5414r55j30yq0rtmzv.jpg" alt="image-20200218225905225"></p><p>主要介绍的两个命令 rebase cherry-pick </p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy53yvq4nj30q00pj0um.jpg" alt="image-20200327160103150"></p><h2 id="配置别名"><a href="#配置别名" class="headerlink" title="配置别名"></a>配置别名</h2><p>有没有经常敲错命令？比如<code>git status</code></p><p>如果敲<code>git st</code>就表示<code>git status</code>那就简单多了，当然这种偷懒的办法我们是极力赞成的。</p><p>我们只需要敲一行命令，告诉Git，以后<code>st</code>就表示<code>status</code>：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global alias.st status</span><br></pre></td></tr></table></figure><p>好了，现在敲<code>git st</code>看看效果。</p><p>当然还有别的命令可以简写，很多人都用<code>co</code>表示<code>checkout</code>，<code>ci</code>表示<code>commit</code>，<code>br</code>表示<code>branch</code>：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global alias.co checkout</span><br><span class="line">$ git config --global alias.ci commit</span><br><span class="line">$ git config --global alias.br branch</span><br></pre></td></tr></table></figure><p>提交就可以简写成：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git ci -m &quot;bala bala bala...&quot;</span><br></pre></td></tr></table></figure><p><code>--global</code>参数是全局参数，也就是这些命令在这台电脑的所有Git仓库下都有用。</p><p><code>git log</code></p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy53zj3urj317w0u0dke.jpg" alt="image-20200327154624267"></p><p>甚至还有人丧心病狂地把<code>lg</code>配置成了：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.lg &quot;log --color --graph --pretty&#x3D;format:&#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#39; --abbrev-commit&quot;</span><br></pre></td></tr></table></figure><p>来看看<code>git lg</code>的效果：</p><p><img src="https://tva1.sinaimg.cn/large/00831rSTgy1gd8j6l772pj317w0u015d.jpg" alt="image-20200327154509668" style="zoom: 50%;" /></p><h2 id="其他操作："><a href="#其他操作：" class="headerlink" title="其他操作："></a>其他操作：</h2><p>连接远程仓库<br><strong>git remote add origin 仓库地址</strong></p><p>查看远程连接<br><strong>git remote -v</strong></p><p>git取消与远程仓库的连接<br><strong>git remote remove origin</strong></p>]]></content>
     
     <summary type="html">
     
@@ -36,7 +36,11 @@
     </summary>
     
     
-      <category term="Git, rebase, cherry-pick" scheme="http://yoursite.com/tags/Git-rebase-cherry-pick/"/>
+      <category term="Git" scheme="http://yoursite.com/tags/Git/"/>
+    
+      <category term="rebase" scheme="http://yoursite.com/tags/rebase/"/>
+    
+      <category term="cherry-pick" scheme="http://yoursite.com/tags/cherry-pick/"/>
     
   </entry>
   
@@ -45,7 +49,7 @@
     <link href="http://yoursite.com/2020/04/18/Vue-%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%BB%9A%E5%8A%A8%E5%88%B0%E6%9C%80%E4%B8%8B%E6%96%B9%E6%97%B6%E6%9B%B4%E6%96%B0/"/>
     <id>http://yoursite.com/2020/04/18/Vue-滚动条滚动到最下方时更新/</id>
     <published>2020-04-18T09:38:13.000Z</published>
-    <updated>2020-04-18T09:39:26.355Z</updated>
+    <updated>2020-04-18T11:32:28.197Z</updated>
     
     <content type="html"><![CDATA[<p><code>代码展示</code></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">watchScroll() &#123;</span><br><span class="line">  <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> el = <span class="keyword">this</span>.$refs[<span class="string">"discussInfoBox"</span>];</span><br><span class="line">    <span class="keyword">const</span> offsetHeight = el.offsetHeight;</span><br><span class="line">    el.onscroll = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> scrollTop = el.scrollTop;</span><br><span class="line">      <span class="keyword">const</span> scrollHeight = el.scrollHeight;</span><br><span class="line">      <span class="keyword">if</span> (offsetHeight + scrollTop - scrollHeight &gt;= <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="comment">// 需要执行的代码</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"get info "</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><p><code>使用步骤</code></p><ol><li>第三行中的<code>discussInfoBox</code>为要监听的div的ID</li><li>在第十行编写当滚动条滚动到最下方时需要调用的函数</li><li>在需要的地方调用该函数。例如created方法或其他监听事件中</li></ol>]]></content>
     
@@ -60,7 +64,9 @@
     </summary>
     
     
-      <category term="Vue, 滚动条" scheme="http://yoursite.com/tags/Vue-%E6%BB%9A%E5%8A%A8%E6%9D%A1/"/>
+      <category term="Vue" scheme="http://yoursite.com/tags/Vue/"/>
+    
+      <category term="滚动条" scheme="http://yoursite.com/tags/%E6%BB%9A%E5%8A%A8%E6%9D%A1/"/>
     
   </entry>
   
@@ -69,7 +75,7 @@
     <link href="http://yoursite.com/2020/04/18/Vue-%E7%88%B6%E7%BB%84%E4%BB%B6%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0/"/>
     <id>http://yoursite.com/2020/04/18/Vue-父组件如何更新子组件的参数/</id>
     <published>2020-04-18T09:35:31.000Z</published>
-    <updated>2020-04-18T09:36:46.712Z</updated>
+    <updated>2020-04-18T11:32:16.930Z</updated>
     
     <content type="html"><![CDATA[<h2 id="父组件如何更新子组件的参数"><a href="#父组件如何更新子组件的参数" class="headerlink" title="父组件如何更新子组件的参数"></a>父组件如何更新子组件的参数</h2><p>以下为两种简单地思路：</p><h3 id="1-父组件更新子组件的prop参数"><a href="#1-父组件更新子组件的prop参数" class="headerlink" title="1. 父组件更新子组件的prop参数"></a>1. 父组件更新子组件的prop参数</h3><p>所有的 prop 都使得其父子 prop 之间形成了一个单向下行绑定：父级 prop 的更新会向下流动到子组件中，但是反过来则不行。这样会防止从子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解。</p><p>额外的，每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。这意味着你不应该在一个子组件内部改变 prop。如果你这样做了，Vue 会在浏览器的控制台中发出警告。</p><h3 id="2-父组件调用子组件的方法"><a href="#2-父组件调用子组件的方法" class="headerlink" title="2. 父组件调用子组件的方法"></a>2. 父组件调用子组件的方法</h3><ol><li>在子组件中定义函数</li></ol><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy20dp3p5j30jz0b6dgu.jpg" alt="image-20200417173318790"></p><ol start="2"><li>在父组件中的使用处添加ref </li></ol><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy20eultjj30gf083mxs.jpg" alt="image-20200417173352552"></p><ol start="3"><li>在需要的地方调用</li></ol><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy20edzejj30bo08y0tb.jpg" alt="image-20200417173511471"></p>]]></content>
     
@@ -84,7 +90,9 @@
     </summary>
     
     
-      <category term="Vue, 子组件" scheme="http://yoursite.com/tags/Vue-%E5%AD%90%E7%BB%84%E4%BB%B6/"/>
+      <category term="Vue" scheme="http://yoursite.com/tags/Vue/"/>
+    
+      <category term="子组件" scheme="http://yoursite.com/tags/%E5%AD%90%E7%BB%84%E4%BB%B6/"/>
     
   </entry>
   
@@ -93,7 +101,7 @@
     <link href="http://yoursite.com/2020/04/18/%E6%8A%98%E8%85%BE%E4%BA%86%E5%8D%8A%E4%B8%8B%E5%8D%88%E6%90%9E%E5%AE%9A%E4%BA%86hexo%EF%BC%8C%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B/"/>
     <id>http://yoursite.com/2020/04/18/折腾了半下午搞定了hexo，记录一下/</id>
     <published>2020-04-18T09:29:35.000Z</published>
-    <updated>2020-04-18T11:20:43.537Z</updated>
+    <updated>2020-04-18T11:33:55.014Z</updated>
     
     <content type="html"><![CDATA[<p>使用<code>polarbear</code>主题，干净简单。</p><p>本地部署hexo服务的命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean; hexo g; hexo s;</span><br></pre></td></tr></table></figure><p>Github部署服务</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean; hexo g -d;</span><br></pre></td></tr></table></figure><p>以后会在此记录一些读书笔记、编程分享之类的文章。</p>]]></content>
     
@@ -114,36 +122,11 @@
   </entry>
   
   <entry>
-    <title>We all wait for summer</title>
-    <link href="http://yoursite.com/2020/04/18/We-all-wait-for-summer/"/>
-    <id>http://yoursite.com/2020/04/18/We-all-wait-for-summer/</id>
-    <published>2020-04-18T08:39:42.784Z</published>
-    <updated>2020-04-18T08:39:59.908Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="We-all-wait-for-summer"><a href="#We-all-wait-for-summer" class="headerlink" title="We all wait for summer"></a>We all wait for summer</h1><p>折腾了半下午搞定了hexo，记录一下。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;We-all-wait-for-summer&quot;&gt;&lt;a href=&quot;#We-all-wait-for-summer&quot; class=&quot;headerlink&quot; title=&quot;We all wait for summer&quot;&gt;&lt;/a&gt;We all wait for summ
-      
-    
-    </summary>
-    
-      <category term="Jekyll" scheme="http://yoursite.com/categories/Jekyll/"/>
-    
-      <category term="tutorial" scheme="http://yoursite.com/categories/Jekyll/tutorial/"/>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Hello World</title>
     <link href="http://yoursite.com/2020/04/18/hello-world/"/>
     <id>http://yoursite.com/2020/04/18/hello-world/</id>
     <published>2020-04-18T04:52:47.000Z</published>
-    <updated>2020-04-18T04:52:47.000Z</updated>
+    <updated>2020-04-18T11:33:51.312Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>]]></content>
     
