@@ -101,9 +101,9 @@
     <link href="http://yoursite.com/2020/04/18/%E6%8A%98%E8%85%BE%E4%BA%86%E5%8D%8A%E4%B8%8B%E5%8D%88%E6%90%9E%E5%AE%9A%E4%BA%86hexo%EF%BC%8C%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B/"/>
     <id>http://yoursite.com/2020/04/18/折腾了半下午搞定了hexo，记录一下/</id>
     <published>2020-04-18T09:29:35.000Z</published>
-    <updated>2020-04-18T11:33:55.014Z</updated>
+    <updated>2020-04-18T11:45:09.036Z</updated>
     
-    <content type="html"><![CDATA[<p>使用<code>polarbear</code>主题，干净简单。</p><p>本地部署hexo服务的命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean; hexo g; hexo s;</span><br></pre></td></tr></table></figure><p>Github部署服务</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean; hexo g -d;</span><br></pre></td></tr></table></figure><p>以后会在此记录一些读书笔记、编程分享之类的文章。</p>]]></content>
+    <content type="html"><![CDATA[<p>使用<code>polarbear</code>主题，干净简单。</p><p>本地部署hexo服务的命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean; hexo g; hexo s;</span><br></pre></td></tr></table></figure><p>Github部署服务</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean; hexo generate; hexo g -d;</span><br></pre></td></tr></table></figure><p>以后会在此记录一些读书笔记、编程分享之类的文章。</p>]]></content>
     
     <summary type="html">
     
