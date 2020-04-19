@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-18T11:55:51.705Z</updated>
+  <updated>2020-04-19T04:03:54.759Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>博客平台对比 - 想写博客该选用那个平台呢？</title>
+    <link href="http://yoursite.com/2020/04/19/%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0%E5%AF%B9%E6%AF%94-%E6%83%B3%E5%86%99%E5%8D%9A%E5%AE%A2%E8%AF%A5%E9%80%89%E7%94%A8%E9%82%A3%E4%B8%AA%E5%B9%B3%E5%8F%B0%E5%91%A2%EF%BC%9F/"/>
+    <id>http://yoursite.com/2020/04/19/博客平台对比-想写博客该选用那个平台呢？/</id>
+    <published>2020-04-19T03:27:41.000Z</published>
+    <updated>2020-04-19T04:03:54.759Z</updated>
+    
+    <content type="html"><![CDATA[<p>对于我的个人博客，我一直没有停下折腾的脚步，最早的博客是大二时搭在腾讯云学生服务器上，github上找的博客项目，删删改改改成自己的，后面也尝试了CSDN，cnblog，简书，掘金等博客平台，下面是我做的一个简单地分析对比：</p><ol><li>几大平台中<code>CSDN</code>的SEO做的最好，原因见下图：</li></ol><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdyx11o5ruj31lp0u0tga.jpg" alt="image-20200419001254184"></p><p>访问量最多的能有7000+ <a href="https://blog.csdn.net/Mr_Zhang____" target="_blank" rel="noopener">https://blog.csdn.net/Mr_Zhang..</a></p><p>访问最多的几篇有一个共性：都是解决具体的问题，也是让人哭笑不得的事情。</p><p>但是这类文章要写好也不是件容易的事情，先写解决方案，在写原理，出现这种问题的原因。这样让别人看了也能有一点收获。</p><p>其他文章无人问津。</p><ol start="2"><li>博客平台发布的文章全都需要审核，审核时长不定，且有一定的几率会不过审，自己搭建的博客则没有审核机制。</li><li>自己搭建的博客是发布在的自己的腾讯云云服务器上的，网址： <a href="zhangnlei.cn">zhangnlei.cn</a>。云服务器需要定期维护，对个人来说是需要不小的时间成本和金钱投入。</li></ol><p>zhangnlei</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdyx0322b7j32160j4dj0.jpg" alt="image-20200419112759165"></p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdyx07vp9dj31ta0kitbx.jpg" alt="image-20200419112806994"></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;对于我的个人博客，我一直没有停下折腾的脚步，最早的博客是大二时搭在腾讯云学生服务器上，github上找的博客项目，删删改改改成自己的，后面也尝试了CSDN，cnblog，简书，掘金等博客平台，下面是我做的一个简单地分析对比：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;几大平台中&lt;code&gt;
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>后端 - Git学习分享</title>
@@ -44,7 +67,7 @@
     <link href="http://yoursite.com/2020/04/18/Vue-%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%BB%9A%E5%8A%A8%E5%88%B0%E6%9C%80%E4%B8%8B%E6%96%B9%E6%97%B6%E6%9B%B4%E6%96%B0/"/>
     <id>http://yoursite.com/2020/04/18/Vue-滚动条滚动到最下方时更新/</id>
     <published>2020-04-18T09:38:13.000Z</published>
-    <updated>2020-04-18T11:56:34.950Z</updated>
+    <updated>2020-04-19T04:03:59.632Z</updated>
     
     <content type="html"><![CDATA[<p><code>代码展示</code></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">watchScroll() &#123;</span><br><span class="line">  <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> el = <span class="keyword">this</span>.$refs[<span class="string">"discussInfoBox"</span>];</span><br><span class="line">    <span class="keyword">const</span> offsetHeight = el.offsetHeight;</span><br><span class="line">    el.onscroll = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> scrollTop = el.scrollTop;</span><br><span class="line">      <span class="keyword">const</span> scrollHeight = el.scrollHeight;</span><br><span class="line">      <span class="keyword">if</span> (offsetHeight + scrollTop - scrollHeight &gt;= <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="comment">// 需要执行的代码</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"get info "</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><p><code>使用步骤</code></p><ol><li>第三行中的<code>discussInfoBox</code>为要监听的div的ID</li><li>在第十行编写当滚动条滚动到最下方时需要调用的函数</li><li>在需要的地方调用该函数。例如created方法或其他监听事件中</li></ol>]]></content>
     
@@ -92,21 +115,29 @@
     <link href="http://yoursite.com/2020/04/18/%E6%8A%98%E8%85%BE%E4%BA%86%E5%8D%8A%E4%B8%8B%E5%8D%88%E6%90%9E%E5%AE%9A%E4%BA%86hexo%EF%BC%8C%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B/"/>
     <id>http://yoursite.com/2020/04/18/折腾了半下午搞定了hexo，记录一下/</id>
     <published>2020-04-18T09:29:35.000Z</published>
-    <updated>2020-04-18T12:17:56.505Z</updated>
+    <updated>2020-04-19T04:07:46.053Z</updated>
     
-    <content type="html"><![CDATA[<h1 id="折腾半下午搞定了hexo"><a href="#折腾半下午搞定了hexo" class="headerlink" title="折腾半下午搞定了hexo"></a>折腾半下午搞定了hexo</h1><p>关键词：<code>hexo</code> 、<code>github.io</code>、<code>blog</code></p><p>首先使用hexo搭建本地博客，hexo是一个非常成熟的博客框架</p><p>可以根据用户编辑的Markdown文件生成静态的htnl文件。当然用户可以选择自己喜欢的主题插件安装，以生成优美的界面。</p><p>刚好GitHub提供了一个GitHub Page的功能，每个用户都可以有一个属于自己域名的静态页面。</p><p>于是使用hexo + GitHub Page便可搭建一个免费的个人博客。</p><p>安装过程并非一帆风顺，好在hexo技术和社区非常成熟，官方有文档、网络上也有非常多帖子。</p><p>我选用的主题是Vue风格的<code>vexo</code>，干净简单，加之本人本来就很喜欢Vue的主题，Typora使用的也是类Vue的主题。</p><p>以后会在此记录一些读书笔记、编程分享之类的文章。</p><p>本地部署hexo服务的命令：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean; hexo g; hexo s;</span><br></pre></td></tr></table></figure><p>部署到Github Page：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean; hexo generate; hexo g -d;</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="折腾半下午使用搭建了自己的GitHub-Page个人博客"><a href="#折腾半下午使用搭建了自己的GitHub-Page个人博客" class="headerlink" title="折腾半下午使用搭建了自己的GitHub Page个人博客"></a>折腾半下午使用搭建了自己的<code>GitHub Page</code>个人博客</h1><p>关键词：<code>Hexo</code> 、<code>GitHub Page</code>、<code>Typora</code>、<code>Blog</code></p><p>对于我的个人博客，我一直没有停下折腾的脚步，最早的博客是大二时搭在腾讯云学生服务器上，后面也尝试了CSDN，cnblog，简书，掘金等博客平台，下面是我做的一个简单地分析对比：</p><h2 id="博客平台简单地分析对比"><a href="#博客平台简单地分析对比" class="headerlink" title="博客平台简单地分析对比"></a>博客平台简单地分析对比</h2><ol><li><p>几大平台中<code>CSDN</code>的SEO做的最好，访问量最多的能有7000+ <a href="https://blog.csdn.net/Mr_Zhang____" target="_blank" rel="noopener">https://blog.csdn.net/Mr_Zhang..</a></p></li><li><p>在博客平台发布文章需要审核，审核时长不定，且有一定的几率会不过审，自己搭建的博客则无需审核机制。</p></li><li>自己搭的博客是发布在的自己的腾讯云云服务器上的，网址： <a href="zhangnlei.cn">zhangnlei.cn</a>。博客服务需要自己发布，云服务器需要定期维护，对个人来说是需要不小的时间成本和金钱投入。（我的博客服务是GitHub上找的一个开源项目，删删改改，为自己所用）</li><li>因为网页的编辑器不是很稳点，我写博客一般都是先在本地写好Markdown，然后在贴到博客的编辑器中，再添加标签、分类等，最后再发布。需要很多重复工作。</li></ol><p>综上：自己的服务器有一定的服务维护成本，博客平台编辑体验不佳、自由度不高。</p><p>所以决定尝试使用<code>GitHub Page</code>+<code>Hexo</code>搭建了自己的博客，优点有以下：</p><h2 id="使用GitHub-Page-Hexo搭建了自己的博客优点"><a href="#使用GitHub-Page-Hexo搭建了自己的博客优点" class="headerlink" title="使用GitHub Page+Hexo搭建了自己的博客优点"></a>使用<code>GitHub Page</code>+<code>Hexo</code>搭建了自己的博客优点</h2><ol><li>无需维护服务器，服务是挂载在github的服务器上，由github维护（现由微软收购），维护成本几乎为0，且足够稳定。</li><li>自由度高，发布的内容随心而定，无需受平台的限制。</li><li>编辑体验好，无需反复搬运文本，打标签等，搭配软件Typora在本地编写MarkDown，博客编写完后一行命令发布，契合程序员的操作体验。</li></ol><p>好下面简单介绍一下我使用到的工具和服务：</p><h2 id="我使用到的工具和服务"><a href="#我使用到的工具和服务" class="headerlink" title="我使用到的工具和服务"></a>我使用到的工具和服务</h2><ol><li>Hexo是一个非常成熟的博客框架，可以根据用户编辑的Markdown文件生成静态的htnl文件。当然用户可以选择自己喜欢的主题插件安装，以生成优美博客界面。</li><li><p>GitHub提供了一个GitHub Page的功能，每个用户都可以有一个属于自己域名的静态页面。</p></li><li><p>Typora软件，本地编写md文件，实时编写实时渲染，使用体验极佳。</p></li></ol><p>于是使用Hexo + GitHub Page便可搭建一个免费的个人博客，搭配Typora在本地编写MarkDown，舒适度不要太高。</p><p>有了上面的工具做基础，实现起来就很简单啦，具体的步骤就不详细说明了，网上一搜一大把。</p><p>这里提供几个搜索的关键词：<code>github.io</code>/<code>github page</code>/<code>hexo</code>/<code>个人博客</code>。</p><p>安装过程并非一帆风顺，好在hexo技术和社区非常成熟，官方有文档、网络上也有非常多帖子。</p><h2 id="成果展示"><a href="#成果展示" class="headerlink" title="成果展示"></a>成果展示</h2><p>我选用的Hexo主题是Vue风格的<code>vexo</code>主题，干净简单。本人比较喜欢Vue的主题，Typora用的也是类Vue的主题。</p><p>上一张效果图：</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdycz4vzvuj31gq0u0gzp.jpg" alt="image-20200418235505523"></p><p>下图为Typora软件截图：</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdybof1yc0j30x60u0k3b.jpg" alt="image-20200418231011590"></p><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>以后会在此记录一些心情、读书笔记、编程技术分享之类的文章。</p><p>感谢阅读。</p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;h1 id=&quot;折腾半下午搞定了hexo&quot;&gt;&lt;a href=&quot;#折腾半下午搞定了hexo&quot; class=&quot;headerlink&quot; title=&quot;折腾半下午搞定了hexo&quot;&gt;&lt;/a&gt;折腾半下午搞定了hexo&lt;/h1&gt;&lt;p&gt;关键词：&lt;code&gt;hexo&lt;/code&gt; 、&lt;code&gt;g
+        &lt;h1 id=&quot;折腾半下午使用搭建了自己的GitHub-Page个人博客&quot;&gt;&lt;a href=&quot;#折腾半下午使用搭建了自己的GitHub-Page个人博客&quot; class=&quot;headerlink&quot; title=&quot;折腾半下午使用搭建了自己的GitHub Page个人博客&quot;&gt;&lt;/a&gt;折腾
       
     
     </summary>
     
     
       <category term="心情" scheme="http://yoursite.com/tags/%E5%BF%83%E6%83%85/"/>
+    
+      <category term="Hexo" scheme="http://yoursite.com/tags/Hexo/"/>
+    
+      <category term="GitHub Page" scheme="http://yoursite.com/tags/GitHub-Page/"/>
+    
+      <category term="Typora" scheme="http://yoursite.com/tags/Typora/"/>
+    
+      <category term="Blog" scheme="http://yoursite.com/tags/Blog/"/>
     
   </entry>
   
