@@ -10,7 +10,7 @@
   
   <title>
     
-      Vue - 父组件如何更新子组件的参数? | 张念磊的博客
+      Vue - 如何在子组件中改变prop传入的值？ | 张念磊的博客
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -131,7 +131,7 @@
 </header>
 
     <div id="article-banner">
-  <h2>Vue - 父组件如何更新子组件的参数?</h2>
+  <h2>Vue - 如何在子组件中改变prop传入的值？</h2>
   <p class="post-date">2020-04-20</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
@@ -140,21 +140,12 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h3 id="方法1-父组件更新子组件的prop参数"><a href="#方法1-父组件更新子组件的prop参数" class="headerlink" title="方法1. 父组件更新子组件的prop参数"></a>方法1. 父组件更新子组件的prop参数</h3><p>所有的 prop 都使得其父子 prop 之间形成了一个单向下行绑定：父级 prop 的更新会向下流动到子组件中，但是反过来则不行。这样会防止从子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解。</p>
-<p>额外的，每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。这意味着你不应该在一个子组件内部改变 prop。如果你这样做了，Vue 会在浏览器的控制台中发出警告。如果想在子组件中改变prop，可以参考官方解释<a href="[https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-%E4%BF%AE%E9%A5%B0%E7%AC%A6](https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-修饰符">https://cn.vuejs.org/v2/guide/components…</a>)</p>
-<h3 id="方法2-父组件调用子组件的方法"><a href="#方法2-父组件调用子组件的方法" class="headerlink" title="方法2. 父组件调用子组件的方法"></a>方法2. 父组件调用子组件的方法</h3><ol>
-<li>在子组件中定义函数 empty()</li>
-</ol>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gdzy5c3r3tj30jz0b6dgu.jpg" alt="image-20200417173318790"></p>
-<ol>
-<li>在父组件中的使用处添加ref  ref=”upload”</li>
-</ol>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gdzy5cya5zj30gf083mxs.jpg" alt="image-20200417173352552"></p>
-<ol>
-<li>在需要的地方调用子组件中的函数 </li>
-</ol>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$refs.upload.empty();</span><br></pre></td></tr></table></figure>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gdzy5b8vwbj30bo08y0tb.jpg" alt="image-20200417173511471"></p>
+    <section class="markdown-content"><p>Vue - 如何在子组件中改变prop传入的值？</p>
+<p> 我们都知道在vue中，父组件传入子组件的变量是存放在props属性中的，我们在调用变量的时候是跟data里面的变量一样的，都是通过this.变量来调用，但是如果想要在子组件中直接改变props中的属性浏览器会报错</p>
+<p>如何解决这个问题呢？官方给出了一个方案(Vue2.3.0+)</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gdzyy9pn1yj30u00yqn6k.jpg" alt="image-20200420092057528"></p>
+<p>参考：</p>
+<p><a href="https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-修饰符" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-%E4%BF%AE%E9%A5%B0%E7%AC%A6</a></p>
 </section>
     <!-- Tags START -->
     
@@ -169,6 +160,10 @@
     <span class="tag-code">组件</span>
   </a>
 
+  <a href="/tags#prop" >
+    <span class="tag-code">prop</span>
+  </a>
+
       </div>
     
     <!-- Tags END -->
@@ -177,20 +172,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2020/04/19/%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0%E5%AF%B9%E6%AF%94-%E6%83%B3%E5%86%99%E5%8D%9A%E5%AE%A2%E8%AF%A5%E9%80%89%E7%94%A8%E9%82%A3%E4%B8%AA%E5%B9%B3%E5%8F%B0%E5%91%A2%EF%BC%9F/">
+      <a class="nav-left" href="/2020/04/20/Vue-%E7%88%B6%E7%BB%84%E4%BB%B6%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0-1/">
         <span class="nav-arrow">← </span>
         
-          博客平台对比 - 想写博客该选用那个平台呢？
+          Vue - 父组件如何更新子组件的参数?
         
       </a>
     
-    
-      <a class="nav-right" href="/2020/04/20/Vue-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%AD%E6%94%B9%E5%8F%98prop%E4%BC%A0%E5%85%A5%E7%9A%84%E5%80%BC%EF%BC%9F/">
-        
-          Vue - 如何在子组件中改变prop传入的值？
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -219,7 +207,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#方法1-父组件更新子组件的prop参数"><span class="toc-nav-text">方法1. 父组件更新子组件的prop参数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#方法2-父组件调用子组件的方法"><span class="toc-nav-text">方法2. 父组件调用子组件的方法</span></a></li></ol>
+      <ol class="nav">none</ol>
     
   </div>
 </aside>
@@ -229,7 +217,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2020/04/20/Vue-父组件如何更新子组件的参数-1/';
+    var url = 'http://yoursite.com/2020/04/20/Vue-如何在子组件中改变prop传入的值？/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -291,7 +279,7 @@
     var gitmentConfig = "zhangnlei";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "Vue - 父组件如何更新子组件的参数?",
+        id: "Vue - 如何在子组件中改变prop传入的值？",
         owner: "zhangnlei",
         repo: "zhangnlei.github.io",
         oauth: {
