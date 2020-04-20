@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-20T01:21:27.383Z</updated>
+  <updated>2020-04-20T02:57:55.346Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -17,13 +17,38 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>MacOS笔记 - 下修改 MAC 地址</title>
+    <link href="http://yoursite.com/2020/04/20/MacOS%E7%AC%94%E8%AE%B0-%E4%B8%8B%E4%BF%AE%E6%94%B9-MAC-%E5%9C%B0%E5%9D%80/"/>
+    <id>http://yoursite.com/2020/04/20/MacOS笔记-下修改-MAC-地址/</id>
+    <published>2020-04-20T01:28:00.000Z</published>
+    <updated>2020-04-20T02:57:55.346Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="MacOS笔记-下修改-MAC-地址"><a href="#MacOS笔记-下修改-MAC-地址" class="headerlink" title="MacOS笔记 - 下修改 MAC 地址"></a>MacOS笔记 - 下修改 MAC 地址</h1><p>在终端输入</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ifconfig en0 ether 00:00:00:00:00:00</span><br></pre></td></tr></table></figure><p>其中 en0 是你的第一块网卡（以太网卡，非无线），后面的 12 个 0 是要改成的目标网卡地址，输入以后会要求你输入管理员密码，别忘了给自己的账号先设定管理员密码，确认后当前机器的网卡地址会临时性生效，当重启后网卡地址又恢复成机器本身的。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;MacOS笔记-下修改-MAC-地址&quot;&gt;&lt;a href=&quot;#MacOS笔记-下修改-MAC-地址&quot; class=&quot;headerlink&quot; title=&quot;MacOS笔记 - 下修改 MAC 地址&quot;&gt;&lt;/a&gt;MacOS笔记 - 下修改 MAC 地址&lt;/h1&gt;&lt;p&gt;在终
+      
+    
+    </summary>
+    
+    
+      <category term="MacOS" scheme="http://yoursite.com/tags/MacOS/"/>
+    
+      <category term="修改MAC地址" scheme="http://yoursite.com/tags/%E4%BF%AE%E6%94%B9MAC%E5%9C%B0%E5%9D%80/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Vue - 如何在子组件中改变prop传入的值？</title>
     <link href="http://yoursite.com/2020/04/20/Vue-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%AD%E6%94%B9%E5%8F%98prop%E4%BC%A0%E5%85%A5%E7%9A%84%E5%80%BC%EF%BC%9F/"/>
     <id>http://yoursite.com/2020/04/20/Vue-如何在子组件中改变prop传入的值？/</id>
     <published>2020-04-20T01:04:04.000Z</published>
-    <updated>2020-04-20T01:21:27.383Z</updated>
+    <updated>2020-04-20T01:24:42.406Z</updated>
     
-    <content type="html"><![CDATA[<p>Vue - 如何在子组件中改变prop传入的值？</p><p> 我们都知道在vue中，父组件传入子组件的变量是存放在props属性中的，我们在调用变量的时候是跟data里面的变量一样的，都是通过this.变量来调用，但是如果想要在子组件中直接改变props中的属性浏览器会报错</p><p>如何解决这个问题呢？官方给出了一个方案(Vue2.3.0+)</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gdzyy9pn1yj30u00yqn6k.jpg" alt="image-20200420092057528"></p><p>参考：</p><p><a href="https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-修饰符" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-%E4%BF%AE%E9%A5%B0%E7%AC%A6</a></p>]]></content>
+    <content type="html"><![CDATA[<p>Vue - 如何在子组件中改变prop传入的值？</p><p> 我们都知道在vue中，父组件传入子组件的变量是存放在props属性中的，我们在调用变量的时候是跟data里面的变量一样的，都是通过this.变量来调用，但是如果想要在子组件中直接改变props中的属性浏览器会报错</p><p>如何解决这个问题呢？官方给出了一个方案(支持Vue2.3.0+)</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gdzyy9pn1yj30u00yqn6k.jpg" alt="image-20200420092057528"></p><p>参考：</p><p><a href="[https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-%E4%BF%AE%E9%A5%B0%E7%AC%A6](https://cn.vuejs.org/v2/guide/components-custom-events.html#sync-修饰符">https://cn.vuejs.org/v2/guide/components…</a>)</p>]]></content>
     
     <summary type="html">
     
@@ -38,9 +63,9 @@
     
       <category term="Vue" scheme="http://yoursite.com/tags/Vue/"/>
     
-      <category term="组件" scheme="http://yoursite.com/tags/%E7%BB%84%E4%BB%B6/"/>
-    
       <category term="prop" scheme="http://yoursite.com/tags/prop/"/>
+    
+      <category term="sync" scheme="http://yoursite.com/tags/sync/"/>
     
   </entry>
   
