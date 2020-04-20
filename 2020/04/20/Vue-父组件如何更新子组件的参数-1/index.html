@@ -10,7 +10,7 @@
   
   <title>
     
-      Vue - 滚动条滚动到最下方时更新 | 张念磊的博客
+      Vue - 父组件如何更新子组件的参数? | 张念磊的博客
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -131,8 +131,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>Vue - 滚动条滚动到最下方时更新</h2>
-  <p class="post-date">2020-04-18</p>
+  <h2>Vue - 父组件如何更新子组件的参数?</h2>
+  <p class="post-date">2020-04-20</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -140,15 +140,21 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p><code>代码展示</code></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">watchScroll() &#123;</span><br><span class="line">  <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> el = <span class="keyword">this</span>.$refs[<span class="string">"discussInfoBox"</span>];</span><br><span class="line">    <span class="keyword">const</span> offsetHeight = el.offsetHeight;</span><br><span class="line">    el.onscroll = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> scrollTop = el.scrollTop;</span><br><span class="line">      <span class="keyword">const</span> scrollHeight = el.scrollHeight;</span><br><span class="line">      <span class="keyword">if</span> (offsetHeight + scrollTop - scrollHeight &gt;= <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="comment">// 需要执行的代码</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"get info "</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
-<p><code>使用步骤</code></p>
-<ol>
-<li>第三行中的<code>discussInfoBox</code>为要监听的div的ID</li>
-<li>在第十行编写当滚动条滚动到最下方时需要调用的函数</li>
-<li>在需要的地方调用该函数。例如created方法或其他监听事件中</li>
+    <section class="markdown-content"><h3 id="1-父组件更新子组件的prop参数"><a href="#1-父组件更新子组件的prop参数" class="headerlink" title="1. 父组件更新子组件的prop参数"></a>1. 父组件更新子组件的prop参数</h3><p>所有的 prop 都使得其父子 prop 之间形成了一个单向下行绑定：父级 prop 的更新会向下流动到子组件中，但是反过来则不行。这样会防止从子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解。</p>
+<p>额外的，每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。这意味着你不应该在一个子组件内部改变 prop。如果你这样做了，Vue 会在浏览器的控制台中发出警告。</p>
+<h3 id="2-父组件调用子组件的方法"><a href="#2-父组件调用子组件的方法" class="headerlink" title="2. 父组件调用子组件的方法"></a>2. 父组件调用子组件的方法</h3><ol>
+<li>在子组件中定义函数 empty()</li>
 </ol>
-<p><code>原理解释</code></p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gdzy5c3r3tj30jz0b6dgu.jpg" alt="image-20200417173318790"></p>
+<ol>
+<li>在父组件中的使用处添加ref  ref=”upload”</li>
+</ol>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gdzy5cya5zj30gf083mxs.jpg" alt="image-20200417173352552"></p>
+<ol>
+<li>在需要的地方调用子组件中的函数 </li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$refs.upload.empty();</span><br></pre></td></tr></table></figure>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gdzy5b8vwbj30bo08y0tb.jpg" alt="image-20200417173511471"></p>
 </section>
     <!-- Tags START -->
     
@@ -159,6 +165,10 @@
     <span class="tag-code">Vue</span>
   </a>
 
+  <a href="/tags#组件" >
+    <span class="tag-code">组件</span>
+  </a>
+
       </div>
     
     <!-- Tags END -->
@@ -167,20 +177,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2020/04/18/%E6%8A%98%E8%85%BE%E4%BA%86%E5%8D%8A%E4%B8%8B%E5%8D%88%E6%90%9E%E5%AE%9A%E4%BA%86hexo%EF%BC%8C%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B/">
+      <a class="nav-left" href="/2020/04/19/%E5%8D%9A%E5%AE%A2%E5%B9%B3%E5%8F%B0%E5%AF%B9%E6%AF%94-%E6%83%B3%E5%86%99%E5%8D%9A%E5%AE%A2%E8%AF%A5%E9%80%89%E7%94%A8%E9%82%A3%E4%B8%AA%E5%B9%B3%E5%8F%B0%E5%91%A2%EF%BC%9F/">
         <span class="nav-arrow">← </span>
         
-          折腾了半下午搞定了hexo，记录一下
+          博客平台对比 - 想写博客该选用那个平台呢？
         
       </a>
     
-    
-      <a class="nav-right" href="/2020/04/18/%E5%90%8E%E7%AB%AF-Git%E5%AD%A6%E4%B9%A0%E5%88%86%E4%BA%AB/">
-        
-          后端 - Git学习分享
-        
-        <span class="nav-arrow"> →</span>
-      </a>
     
   </div>
 
@@ -209,7 +212,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="nav">none</ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#1-父组件更新子组件的prop参数"><span class="toc-nav-text">1. 父组件更新子组件的prop参数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#2-父组件调用子组件的方法"><span class="toc-nav-text">2. 父组件调用子组件的方法</span></a></li></ol>
     
   </div>
 </aside>
@@ -219,7 +222,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2020/04/18/Vue-滚动条滚动到最下方时更新/';
+    var url = 'http://yoursite.com/2020/04/20/Vue-父组件如何更新子组件的参数-1/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -281,7 +284,7 @@
     var gitmentConfig = "zhangnlei";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "Vue - 滚动条滚动到最下方时更新",
+        id: "Vue - 父组件如何更新子组件的参数?",
         owner: "zhangnlei",
         repo: "zhangnlei.github.io",
         oauth: {

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-04-20T00:59:12.921Z</updated>
+  <updated>2020-04-19T04:03:54.759Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,31 +15,6 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Vue - 父组件如何更新子组件的参数?</title>
-    <link href="http://yoursite.com/2020/04/20/Vue-%E7%88%B6%E7%BB%84%E4%BB%B6%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0-1/"/>
-    <id>http://yoursite.com/2020/04/20/Vue-父组件如何更新子组件的参数-1/</id>
-    <published>2020-04-20T00:51:17.000Z</published>
-    <updated>2020-04-20T00:59:12.921Z</updated>
-    
-    <content type="html"><![CDATA[<h3 id="1-父组件更新子组件的prop参数"><a href="#1-父组件更新子组件的prop参数" class="headerlink" title="1. 父组件更新子组件的prop参数"></a>1. 父组件更新子组件的prop参数</h3><p>所有的 prop 都使得其父子 prop 之间形成了一个单向下行绑定：父级 prop 的更新会向下流动到子组件中，但是反过来则不行。这样会防止从子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解。</p><p>额外的，每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。这意味着你不应该在一个子组件内部改变 prop。如果你这样做了，Vue 会在浏览器的控制台中发出警告。</p><h3 id="2-父组件调用子组件的方法"><a href="#2-父组件调用子组件的方法" class="headerlink" title="2. 父组件调用子组件的方法"></a>2. 父组件调用子组件的方法</h3><ol><li>在子组件中定义函数 empty()</li></ol><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gdzy5c3r3tj30jz0b6dgu.jpg" alt="image-20200417173318790"></p><ol><li>在父组件中的使用处添加ref  ref=”upload”</li></ol><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gdzy5cya5zj30gf083mxs.jpg" alt="image-20200417173352552"></p><ol><li>在需要的地方调用子组件中的函数 </li></ol><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$refs.upload.empty();</span><br></pre></td></tr></table></figure><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gdzy5b8vwbj30bo08y0tb.jpg" alt="image-20200417173511471"></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h3 id=&quot;1-父组件更新子组件的prop参数&quot;&gt;&lt;a href=&quot;#1-父组件更新子组件的prop参数&quot; class=&quot;headerlink&quot; title=&quot;1. 父组件更新子组件的prop参数&quot;&gt;&lt;/a&gt;1. 父组件更新子组件的prop参数&lt;/h3&gt;&lt;p&gt;所有的 prop
-      
-    
-    </summary>
-    
-    
-      <category term="Vue" scheme="http://yoursite.com/tags/Vue/"/>
-    
-      <category term="组件" scheme="http://yoursite.com/tags/%E7%BB%84%E4%BB%B6/"/>
-    
-  </entry>
   
   <entry>
     <title>博客平台对比 - 想写博客该选用那个平台呢？</title>
@@ -92,9 +67,9 @@
     <link href="http://yoursite.com/2020/04/18/Vue-%E6%BB%9A%E5%8A%A8%E6%9D%A1%E6%BB%9A%E5%8A%A8%E5%88%B0%E6%9C%80%E4%B8%8B%E6%96%B9%E6%97%B6%E6%9B%B4%E6%96%B0/"/>
     <id>http://yoursite.com/2020/04/18/Vue-滚动条滚动到最下方时更新/</id>
     <published>2020-04-18T09:38:13.000Z</published>
-    <updated>2020-04-20T00:56:45.598Z</updated>
+    <updated>2020-04-19T04:03:59.632Z</updated>
     
-    <content type="html"><![CDATA[<p><code>代码展示</code></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">watchScroll() &#123;</span><br><span class="line">  <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> el = <span class="keyword">this</span>.$refs[<span class="string">"discussInfoBox"</span>];</span><br><span class="line">    <span class="keyword">const</span> offsetHeight = el.offsetHeight;</span><br><span class="line">    el.onscroll = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> scrollTop = el.scrollTop;</span><br><span class="line">      <span class="keyword">const</span> scrollHeight = el.scrollHeight;</span><br><span class="line">      <span class="keyword">if</span> (offsetHeight + scrollTop - scrollHeight &gt;= <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="comment">// 需要执行的代码</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"get info "</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><p><code>使用步骤</code></p><ol><li>第三行中的<code>discussInfoBox</code>为要监听的div的ID</li><li>在第十行编写当滚动条滚动到最下方时需要调用的函数</li><li>在需要的地方调用该函数。例如created方法或其他监听事件中</li></ol><p><code>原理解释</code></p>]]></content>
+    <content type="html"><![CDATA[<p><code>代码展示</code></p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">watchScroll() &#123;</span><br><span class="line">  <span class="keyword">this</span>.$nextTick(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">const</span> el = <span class="keyword">this</span>.$refs[<span class="string">"discussInfoBox"</span>];</span><br><span class="line">    <span class="keyword">const</span> offsetHeight = el.offsetHeight;</span><br><span class="line">    el.onscroll = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="keyword">const</span> scrollTop = el.scrollTop;</span><br><span class="line">      <span class="keyword">const</span> scrollHeight = el.scrollHeight;</span><br><span class="line">      <span class="keyword">if</span> (offsetHeight + scrollTop - scrollHeight &gt;= <span class="number">-1</span>) &#123;</span><br><span class="line">        <span class="comment">// 需要执行的代码</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"get info "</span>);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure><p><code>使用步骤</code></p><ol><li>第三行中的<code>discussInfoBox</code>为要监听的div的ID</li><li>在第十行编写当滚动条滚动到最下方时需要调用的函数</li><li>在需要的地方调用该函数。例如created方法或其他监听事件中</li></ol>]]></content>
     
     <summary type="html">
     
@@ -112,20 +87,43 @@
   </entry>
   
   <entry>
-    <title>折腾了半下午搞定了hexo，记录一下</title>
-    <link href="http://yoursite.com/2020/04/18/%E6%8A%98%E8%85%BE%E4%BA%86%E5%8D%8A%E4%B8%8B%E5%8D%88%E6%90%9E%E5%AE%9A%E4%BA%86hexo%EF%BC%8C%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B/"/>
-    <id>http://yoursite.com/2020/04/18/折腾了半下午搞定了hexo，记录一下/</id>
-    <published>2020-04-18T09:29:35.000Z</published>
-    <updated>2020-04-19T06:52:36.783Z</updated>
+    <title>Vue - 父组件如何更新子组件的参数</title>
+    <link href="http://yoursite.com/2020/04/18/Vue-%E7%88%B6%E7%BB%84%E4%BB%B6%E5%A6%82%E4%BD%95%E6%9B%B4%E6%96%B0%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E5%8F%82%E6%95%B0/"/>
+    <id>http://yoursite.com/2020/04/18/Vue-父组件如何更新子组件的参数/</id>
+    <published>2020-04-18T09:35:31.000Z</published>
+    <updated>2020-04-18T11:56:28.038Z</updated>
     
-    <content type="html"><![CDATA[<p>阅读本文需要大约3分钟</p><h1 id="为什么要使用GitHub-Page搭建博客？"><a href="#为什么要使用GitHub-Page搭建博客？" class="headerlink" title="为什么要使用GitHub Page搭建博客？"></a>为什么要使用GitHub Page搭建博客？</h1><p>关键词：<code>Hexo</code> 、<code>GitHub Page</code>、<code>Typora</code>、<code>Blog</code></p><p>对于我的个人博客，我一直没有停下折腾的脚步，最早的博客是大二时搭在腾讯云学生服务器上，后面也尝试了CSDN，cnblog，简书，掘金等博客平台，下面是我做的一个简单地分析对比：</p><h2 id="博客平台简分析对比"><a href="#博客平台简分析对比" class="headerlink" title="博客平台简分析对比"></a>博客平台简分析对比</h2><ol><li><p>几大平台中<code>CSDN</code>的SEO做的最好，访问量最多的能有7000+ <a href="https://blog.csdn.net/Mr_Zhang____" target="_blank" rel="noopener">https://blog.csdn.net/Mr_Zhang..</a></p></li><li><p>在博客平台发布文章需要审核，审核时长不定，且有一定的几率会不过审，自己搭建的博客则无需审核机制。</p></li><li>自己搭的博客是发布在的自己的腾讯云云服务器上的，网址： <a href="zhangnlei.cn">zhangnlei.cn</a>。博客服务需要自己发布，云服务器需要定期维护，对个人来说是需要不小的时间成本和金钱投入。（我的博客服务是GitHub上找的一个开源项目，删删改改，为自己所用）</li><li>因为网页的编辑器不是很稳点，我写博客一般都是先在本地写好Markdown，然后在贴到博客的编辑器中，再添加标签、分类等，最后再发布。需要很多重复工作。</li></ol><p>综上：自己的服务器有一定的服务维护成本，博客平台编辑体验不佳、自由度不高。</p><p>所以决定尝试使用<code>GitHub Page</code>+<code>Hexo</code>搭建了自己的博客，优点有以下：</p><h2 id="使用GitHub-Hexo搭建博客的优点"><a href="#使用GitHub-Hexo搭建博客的优点" class="headerlink" title="使用GitHub+Hexo搭建博客的优点"></a>使用GitHub+Hexo搭建博客的优点</h2><ol><li>无需维护服务器，服务是挂载在github的服务器上，由github维护（现由微软收购），维护成本几乎为0，且足够稳定。</li><li>自由度高，发布的内容随心而定，无需受平台的限制。</li><li>编辑体验好，无需反复搬运文本，打标签等，搭配软件Typora在本地编写MarkDown，博客编写完后一行命令一秒发布，契合程序员的操作体验。</li></ol><p>当然也有缺点：对非开发者来说需要一定的门槛，可能连GitHub是什么都不知道。</p><p>好下面简单介绍一下我使用到的工具和服务：</p><h1 id="使用到的工具和服务"><a href="#使用到的工具和服务" class="headerlink" title="使用到的工具和服务"></a>使用到的工具和服务</h1><ol><li><p>Hexo是一个非常成熟的博客框架，可以根据用户编辑的Markdown文件生成静态的htnl文件。当然用户可以选择自己喜欢的主题插件安装，以生成优美博客界面。</p></li><li><p>GitHub提供了一个GitHub Page的功能，每个用户都可以有一个属于自己域名的静态页面。</p></li><li><p>Typora软件，本地编写md文件，实时编写实时渲染，使用体验极佳。</p></li></ol><p>于是使用Hexo + GitHub Page便可搭建一个免费的个人博客，搭配Typora在本地编写MarkDown，舒适度不要太高。</p><p>有了上面的工具做基础，实现起来就很简单啦，具体的步骤就不详细说明了，网上一搜一大把。</p><p>这里提供几个搜索的关键词：<code>github.io</code>/<code>github page</code>/<code>hexo</code>/<code>个人博客</code>。</p><p>安装过程并非一帆风顺，好在hexo技术和社区非常成熟，官方有文档、网络上也有非常多帖子。</p><h1 id="成果展示"><a href="#成果展示" class="headerlink" title="成果展示"></a>成果展示</h1><p>我选用的Hexo主题是Vue风格的<code>vexo</code>主题，干净简单。本人比较喜欢Vue的主题，Typora用的也是类Vue的主题。</p><p>上一张博客<a href="https://zhangnlei.github.io/" target="_blank" rel="noopener">zhangnlei.github.io</a>的效果图：</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdz25fwppgj31gz0u04au.jpg" alt="image-20200419142605032"></p><p>下图为Typora软件截图：</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdz27fy72mj313q0u045u.jpg" alt="image-20200419142803105"></p><p>是不是都很VUE。哈哈</p><h1 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h1><p>以后会在这里记录一些心情、读书笔记、编程技术分享之类的文章。</p><p>感谢阅读。</p>]]></content>
+    <content type="html"><![CDATA[<h2 id="父组件如何更新子组件的参数"><a href="#父组件如何更新子组件的参数" class="headerlink" title="父组件如何更新子组件的参数"></a>父组件如何更新子组件的参数</h2><p>以下为两种简单地思路：</p><h3 id="1-父组件更新子组件的prop参数"><a href="#1-父组件更新子组件的prop参数" class="headerlink" title="1. 父组件更新子组件的prop参数"></a>1. 父组件更新子组件的prop参数</h3><p>所有的 prop 都使得其父子 prop 之间形成了一个单向下行绑定：父级 prop 的更新会向下流动到子组件中，但是反过来则不行。这样会防止从子组件意外改变父级组件的状态，从而导致你的应用的数据流向难以理解。</p><p>额外的，每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。这意味着你不应该在一个子组件内部改变 prop。如果你这样做了，Vue 会在浏览器的控制台中发出警告。</p><h3 id="2-父组件调用子组件的方法"><a href="#2-父组件调用子组件的方法" class="headerlink" title="2. 父组件调用子组件的方法"></a>2. 父组件调用子组件的方法</h3><ol><li>在子组件中定义函数</li></ol><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy20dp3p5j30jz0b6dgu.jpg" alt="image-20200417173318790"></p><ol start="2"><li>在父组件中的使用处添加ref </li></ol><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy20eultjj30gf083mxs.jpg" alt="image-20200417173352552"></p><ol start="3"><li>在需要的地方调用</li></ol><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdy20edzejj30bo08y0tb.jpg" alt="image-20200417173511471"></p>]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;阅读本文需要大约3分钟&lt;/p&gt;
-&lt;h1 id=&quot;为什么要使用GitHub-Page搭建博客？&quot;&gt;&lt;a href=&quot;#为什么要使用GitHub-Page搭建博客？&quot; class=&quot;headerlink&quot; title=&quot;为什么要使用GitHub Page搭建博客？&quot;&gt;&lt;/a&gt;为
+        &lt;h2 id=&quot;父组件如何更新子组件的参数&quot;&gt;&lt;a href=&quot;#父组件如何更新子组件的参数&quot; class=&quot;headerlink&quot; title=&quot;父组件如何更新子组件的参数&quot;&gt;&lt;/a&gt;父组件如何更新子组件的参数&lt;/h2&gt;&lt;p&gt;以下为两种简单地思路：&lt;/p&gt;
+&lt;h3 id=&quot;1-
+      
+    
+    </summary>
+    
+    
+      <category term="Vue" scheme="http://yoursite.com/tags/Vue/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>折腾了半下午搞定了hexo，记录一下</title>
+    <link href="http://yoursite.com/2020/04/18/%E6%8A%98%E8%85%BE%E4%BA%86%E5%8D%8A%E4%B8%8B%E5%8D%88%E6%90%9E%E5%AE%9A%E4%BA%86hexo%EF%BC%8C%E8%AE%B0%E5%BD%95%E4%B8%80%E4%B8%8B/"/>
+    <id>http://yoursite.com/2020/04/18/折腾了半下午搞定了hexo，记录一下/</id>
+    <published>2020-04-18T09:29:35.000Z</published>
+    <updated>2020-04-19T06:11:29.327Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="搭建了自己的GitHub-Page博客"><a href="#搭建了自己的GitHub-Page博客" class="headerlink" title="搭建了自己的GitHub Page博客"></a>搭建了自己的GitHub Page博客</h2><p>关键词：<code>Hexo</code> 、<code>GitHub Page</code>、<code>Typora</code>、<code>Blog</code></p><p>对于我的个人博客，我一直没有停下折腾的脚步，最早的博客是大二时搭在腾讯云学生服务器上，后面也尝试了CSDN，cnblog，简书，掘金等博客平台，下面是我做的一个简单地分析对比：</p><h2 id="博客平台简分析对比"><a href="#博客平台简分析对比" class="headerlink" title="博客平台简分析对比"></a>博客平台简分析对比</h2><ol><li><p>几大平台中<code>CSDN</code>的SEO做的最好，访问量最多的能有7000+ <a href="https://blog.csdn.net/Mr_Zhang____" target="_blank" rel="noopener">https://blog.csdn.net/Mr_Zhang..</a></p></li><li><p>在博客平台发布文章需要审核，审核时长不定，且有一定的几率会不过审，自己搭建的博客则无需审核机制。</p></li><li>自己搭的博客是发布在的自己的腾讯云云服务器上的，网址： <a href="zhangnlei.cn">zhangnlei.cn</a>。博客服务需要自己发布，云服务器需要定期维护，对个人来说是需要不小的时间成本和金钱投入。（我的博客服务是GitHub上找的一个开源项目，删删改改，为自己所用）</li><li>因为网页的编辑器不是很稳点，我写博客一般都是先在本地写好Markdown，然后在贴到博客的编辑器中，再添加标签、分类等，最后再发布。需要很多重复工作。</li></ol><p>综上：自己的服务器有一定的服务维护成本，博客平台编辑体验不佳、自由度不高。</p><p>所以决定尝试使用<code>GitHub Page</code>+<code>Hexo</code>搭建了自己的博客，优点有以下：</p><h2 id="使用GitHub-Hexo搭建博客的优点"><a href="#使用GitHub-Hexo搭建博客的优点" class="headerlink" title="使用GitHub+Hexo搭建博客的优点"></a>使用GitHub+Hexo搭建博客的优点</h2><ol><li>无需维护服务器，服务是挂载在github的服务器上，由github维护（现由微软收购），维护成本几乎为0，且足够稳定。</li><li>自由度高，发布的内容随心而定，无需受平台的限制。</li><li>编辑体验好，无需反复搬运文本，打标签等，搭配软件Typora在本地编写MarkDown，博客编写完后一行命令一秒发布，契合程序员的操作体验。</li></ol><p>好下面简单介绍一下我使用到的工具和服务：</p><h2 id="使用到的工具和服务"><a href="#使用到的工具和服务" class="headerlink" title="使用到的工具和服务"></a>使用到的工具和服务</h2><ol><li>Hexo是一个非常成熟的博客框架，可以根据用户编辑的Markdown文件生成静态的htnl文件。当然用户可以选择自己喜欢的主题插件安装，以生成优美博客界面。</li><li><p>GitHub提供了一个GitHub Page的功能，每个用户都可以有一个属于自己域名的静态页面。</p></li><li><p>Typora软件，本地编写md文件，实时编写实时渲染，使用体验极佳。</p></li></ol><p>于是使用Hexo + GitHub Page便可搭建一个免费的个人博客，搭配Typora在本地编写MarkDown，舒适度不要太高。</p><p>有了上面的工具做基础，实现起来就很简单啦，具体的步骤就不详细说明了，网上一搜一大把。</p><p>这里提供几个搜索的关键词：<code>github.io</code>/<code>github page</code>/<code>hexo</code>/<code>个人博客</code>。</p><p>安装过程并非一帆风顺，好在hexo技术和社区非常成熟，官方有文档、网络上也有非常多帖子。</p><h2 id="成果展示"><a href="#成果展示" class="headerlink" title="成果展示"></a>成果展示</h2><p>我选用的Hexo主题是Vue风格的<code>vexo</code>主题，干净简单。本人比较喜欢Vue的主题，Typora用的也是类Vue的主题。</p><p>上一张效果图：</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdycz4vzvuj31gq0u0gzp.jpg" alt="image-20200418235505523"></p><p>下图为Typora软件截图：</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gdybof1yc0j30x60u0k3b.jpg" alt="image-20200418231011590"></p><h2 id="写在最后"><a href="#写在最后" class="headerlink" title="写在最后"></a>写在最后</h2><p>以后会在此记录一些心情、读书笔记、编程技术分享之类的文章。</p><p>感谢阅读。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;搭建了自己的GitHub-Page博客&quot;&gt;&lt;a href=&quot;#搭建了自己的GitHub-Page博客&quot; class=&quot;headerlink&quot; title=&quot;搭建了自己的GitHub Page博客&quot;&gt;&lt;/a&gt;搭建了自己的GitHub Page博客&lt;/h2&gt;&lt;p&gt;关键
       
     
     </summary>
