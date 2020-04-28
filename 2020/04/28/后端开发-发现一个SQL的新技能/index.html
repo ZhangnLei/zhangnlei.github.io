@@ -10,7 +10,7 @@
   
   <title>
     
-      MacOS笔记 - 下修改 MAC 地址 | 张念磊的博客
+      后端开发 - 发现一个SQL的新技能 | 张念磊的博客
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -131,8 +131,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>MacOS笔记 - 下修改 MAC 地址</h2>
-  <p class="post-date">2020-04-20</p>
+  <h2>后端开发 - 发现一个SQL的新技能</h2>
+  <p class="post-date">2020-04-28</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -140,21 +140,22 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><h1 id="MacOS笔记-下修改-MAC-地址"><a href="#MacOS笔记-下修改-MAC-地址" class="headerlink" title="MacOS笔记 - 下修改 MAC 地址"></a>MacOS笔记 - 下修改 MAC 地址</h1><p>在终端输入</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ifconfig en0 ether 00:00:00:00:00:00</span><br></pre></td></tr></table></figure>
-<p>其中 en0 是你的第一块网卡（以太网卡，非无线），后面的 12 个 0 是要改成的目标网卡地址，输入以后会要求你输入管理员密码，别忘了给自己的账号先设定管理员密码，确认后当前机器的网卡地址会临时性生效，当重启后网卡地址又恢复成机器本身的。</p>
+    <section class="markdown-content"><blockquote>
+<p> 不是发明创造，以前没见过这种用法，写下来记录一下。</p>
+</blockquote>
+<h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>需要写一个添加根据用户<code>真实姓名</code>或<code>用户名</code>或<code>工号</code>模糊查询用户信息的接口</p>
+<p>但是公司用了<code>shardingjdbc</code>且是较低版本，不支持用 OR关键字，短时间内不可能将组件升级。</p>
+<h2 id="怎么思路"><a href="#怎么思路" class="headerlink" title="怎么思路"></a>怎么思路</h2><p>使用concat() 函数</p>
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">concat( real_name, '*', user_name, '*', work_no ) LIKE concat('%',#&#123;searchParam&#125;, '%' )</span><br></pre></td></tr></table></figure>
+<p>哈哈，很简单，很神奇。</p>
 </section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#MacOS" >
-    <span class="tag-code">MacOS</span>
-  </a>
-
-  <a href="/tags#修改MAC地址" >
-    <span class="tag-code">修改MAC地址</span>
+  <a href="/tags#SQL" >
+    <span class="tag-code">SQL</span>
   </a>
 
       </div>
@@ -165,20 +166,13 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2020/04/20/Vue-%E5%A6%82%E4%BD%95%E5%9C%A8%E5%AD%90%E7%BB%84%E4%BB%B6%E4%B8%AD%E6%94%B9%E5%8F%98prop%E4%BC%A0%E5%85%A5%E7%9A%84%E5%80%BC%EF%BC%9F/">
+      <a class="nav-left" href="/2020/04/21/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91-shardingjdbc%E4%B8%8D%E6%94%AF%E6%8C%81%E7%94%A8-OR-%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%EF%BC%9F/">
         <span class="nav-arrow">← </span>
-        
-          Vue - 如何在子组件中改变prop传入的值？
-        
-      </a>
-    
-    
-      <a class="nav-right" href="/2020/04/21/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91-shardingjdbc%E4%B8%8D%E6%94%AF%E6%8C%81%E7%94%A8-OR-%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%EF%BC%9F/">
         
           后端开发 - shardingjdbc不支持用 OR 怎么解决？
         
-        <span class="nav-arrow"> →</span>
       </a>
+    
     
   </div>
 
@@ -207,7 +201,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link" href="#MacOS笔记-下修改-MAC-地址"><span class="toc-nav-text">MacOS笔记 - 下修改 MAC 地址</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#起因"><span class="toc-nav-text">起因</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#怎么思路"><span class="toc-nav-text">怎么思路</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#解决方案"><span class="toc-nav-text">解决方案</span></a></li></ol>
     
   </div>
 </aside>
@@ -217,7 +211,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2020/04/20/MacOS笔记-下修改-MAC-地址/';
+    var url = 'http://yoursite.com/2020/04/28/后端开发-发现一个SQL的新技能/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -279,7 +273,7 @@
     var gitmentConfig = "zhangnlei";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "MacOS笔记 - 下修改 MAC 地址",
+        id: "后端开发 - 发现一个SQL的新技能",
         owner: "zhangnlei",
         repo: "zhangnlei.github.io",
         oauth: {

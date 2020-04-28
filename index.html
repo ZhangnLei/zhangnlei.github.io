@@ -156,6 +156,49 @@
   
     <article class="article-card">
       <h2 class="article-head">
+        <a href="/2020/04/28/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91-%E5%8F%91%E7%8E%B0%E4%B8%80%E4%B8%AASQL%E7%9A%84%E6%96%B0%E6%8A%80%E8%83%BD/">后端开发 - 发现一个SQL的新技能</a>
+      </h2>
+      <p class="article-date">April 28, 2020</p>
+      
+        
+  <a href="/tags#SQL" >
+    <span class="tag-code">SQL</span>
+  </a>
+
+      
+      <div class="article-summary">
+        
+          
+ 不是发明创造，以前没见过这种用法，写下来记录一下。
+
+起因需要写一个添加根据用户真实姓名或用户名或工号模糊查询用户信息的接口
+但是公司用了shardingjdbc且是较低版本，不支持用 OR关键字，短时间内不可能将组件升级。
+怎么思路使用concat() 函数
+解决方案1concat(  ...
+        
+      </div>
+      <a class="more" href="/2020/04/28/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91-%E5%8F%91%E7%8E%B0%E4%B8%80%E4%B8%AASQL%E7%9A%84%E6%96%B0%E6%8A%80%E8%83%BD/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
+        <a href="/2020/04/21/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91-shardingjdbc%E4%B8%8D%E6%94%AF%E6%8C%81%E7%94%A8-OR-%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%EF%BC%9F/">后端开发 - shardingjdbc不支持用 OR 怎么解决？</a>
+      </h2>
+      <p class="article-date">April 21, 2020</p>
+      
+      <div class="article-summary">
+        
+          shardingjdbc不支持用 OR 怎么解决？
+需求：添加根据用户真实姓名或用户名或工号模糊查询用户信息的接口
+代码：
+1234567891011121314SELECT	corporation_no,	real_name,	username,	job_no FROM	sys_user  ...
+        
+      </div>
+      <a class="more" href="/2020/04/21/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91-shardingjdbc%E4%B8%8D%E6%94%AF%E6%8C%81%E7%94%A8-OR-%E6%80%8E%E4%B9%88%E8%A7%A3%E5%86%B3%EF%BC%9F/">Read more</a>
+    </article>
+  
+    <article class="article-card">
+      <h2 class="article-head">
         <a href="/2020/04/20/MacOS%E7%AC%94%E8%AE%B0-%E4%B8%8B%E4%BF%AE%E6%94%B9-MAC-%E5%9C%B0%E5%9D%80/">MacOS笔记 - 下修改 MAC 地址</a>
       </h2>
       <p class="article-date">April 20, 2020</p>
