@@ -176,8 +176,13 @@
 </li>
 </ol>
 <p>运行效果:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ./clear-git-branch.sh</span></span><br><span class="line">/f/code/sycode/dcit-serxxxxxxxx</span><br><span class="line">Already on 'master'</span><br><span class="line">Your branch is up to date with 'origin/master'.</span><br><span class="line">Deleted branch dev (was 6c999e7).</span><br><span class="line">Deleted branch test (was a4238eb).</span><br><span class="line">Deleted branch release (was 6603884).</span><br><span class="line">Switched to a new branch 'dev'</span><br><span class="line">Branch 'dev' set up to track remote branch 'dev' from 'origin'.</span><br><span class="line">Switched to a new branch 'test'</span><br><span class="line">Branch 'test' set up to track remote branch 'test' from 'origin'.</span><br><span class="line">Switched to a new branch 'release'</span><br><span class="line">Branch 'release' set up to track remote branch 'release' from 'origin'.</span><br><span class="line">Switched to branch 'master'</span><br><span class="line">Your branch is up to date with 'origin/master'.</span><br><span class="line">....</span><br></pre></td></tr></table></figure></p>
-<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><p>运行完后不一定百分百的删除所有的分支，当你的分支在dev test release且有正在编辑的代码，则会删除失败。</p>
-<p>对于这种情况需要自行判断并加以处理。</p>
+<h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol>
+<li><p>该脚本会把所有仓库的分支切换到master分支，如后续开发需要自己手动切回自己的特性分支。</p>
+</li>
+<li><p>可能会有失败的案例，当你的分支在dev/test/release且有正在编辑的代码，则会删除失败。</p>
+</li>
+</ol>
+<p>对于这种情况需要自行判断是否保存并加以处理。</p>
 <h3 id="大功告成"><a href="#大功告成" class="headerlink" title="大功告成"></a>大功告成</h3><p>完美，哈哈。</p>
 <p>刚开始学习shell，有错误还请大佬指出。</p>
 </section>
