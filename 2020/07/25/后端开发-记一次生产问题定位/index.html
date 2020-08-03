@@ -140,21 +140,15 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>[toc]</p>
+    <section class="markdown-content"><p>@auther <code>张念磊</code><br>@date <code>2020/7/25</code></p>
+<p>[toc]</p>
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>一个服务上线生产之后两天出现了三次问题</p>
 <p>详细征兆如下：</p>
 <ol>
 <li>刚出现此问题时，浏览器的一个请求发过去，开发者工具network一栏显示该请求状态一直是padding，会持续几分钟。</li>
-<li>过几分钟后发给该服务的所有请求都会立即返回500，提示信息为</li>
-</ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">timestamp: 1595658988848</span><br><span class="line">status: 500</span><br><span class="line">error: "Internal Server Error"</span><br><span class="line">exception: "com.netflix.zuul.exception.ZuulException"</span><br><span class="line">message: "GENERAL"</span><br></pre></td></tr></table></figure>
-<ol start="3">
-<li><p>后台服务不会产生任何日志（日志级别info，服务正常时打印请求体和一些自定义的日志信息）；</p>
-</li>
-<li><p>网关服务也没有打印相关的请求日志（没有实时监测日志，过时定位日志分析的，待确认）</p>
-</li>
-<li><p>通过重启服务可暂时解决该问题，不过一段时间后可能会复现。</p>
-</li>
+<li>网关服务打印了对应的请求。</li>
+<li>后台服务只打印了controller中的日志，没有打印service层的日志（日志级别info，服务正常时会打印service层的日志）；</li>
+<li>通过重启服务可暂时解决该问题，不过一段时间后会复现。</li>
 </ol>
 <h2 id="可能的原因"><a href="#可能的原因" class="headerlink" title="可能的原因"></a>可能的原因</h2><p>前提：近期用户增多，有49家机构在使用该功能模块。</p>
 <ol>
@@ -162,14 +156,50 @@
 <li>服务器内存不够：服务器内存为32GB，现有未使用1GB（每个服务的运行内存设置为300M/512M/1G）。但服务日志没有爆出内存溢出异常，不能断定是该问题。</li>
 <li>编写的代码异常导致，但异常时服务不产生日志，无法定位问题。以前也会有此问题，程序异常，后台返回的异常原因是null，可能是该服务的config配置有误，没有准确捕捉并返回异常信息。</li>
 </ol>
-<h2 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h2><ol>
-<li>减小其他服务启动时配置的内存大小，使服务器内存处于健康状态 (已使用该方法，能暂时解决问题)</li>
-<li>限制每个微服务的线程数量，使其不能超过计算机的最大线程数</li>
-<li>为服务添加合理的全局异常捕获机制。</li>
-<li>找同事协助分析解决</li>
+<h2 id="尝试解决"><a href="#尝试解决" class="headerlink" title="尝试解决"></a>尝试解决</h2><ol>
+<li>减小其他服务启动时配置的内存大小，使服务器内存处于健康状态 (已使用该方法，未能解决问题)</li>
+<li>限制每个微服务的线程数量，使其不能超过计算机的最大线程数。（经排查，服务的线程数已被限制，每个服务被限制为200，Linux系统的总线程数为13万，故排除此原因）</li>
+<li>为服务添加合理的全局异常捕获机制。（查看该工程的启动类中的try-catch代码块，发现catch到异常后直接返回null，没有做任何处理，在此为其添加一行代码，记录捕获到的异常到日志中）</li>
+<li>找同事协助分析。（找三位同事，其中一位定位到原因：log文件死锁了。具体原因：应为项目中使用到了两种打印日志的方式，一是使用第三方的slf4j打印log；二是使用printStackTrace()函数打印日志）</li>
 </ol>
-<p>补充 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">环境信息：</span><br><span class="line">Linux：Redhat</span><br><span class="line">微服务框架：SpringCloud</span><br><span class="line">服务注册：eureka</span><br><span class="line">网关服务：gateway</span><br></pre></td></tr></table></figure>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>此次生产问题的原因：</p>
+<ol>
+<li>日志文件被锁住了。printStackTrace()函数打印日志，和使用slf4j打印日志时对日志文件资源的抢夺，导致文件被锁住；</li>
+<li>启动类中捕获了异常但是没有打印异常</li>
+</ol>
+<p>目前的解决办法：启动类中添加异常信息的打印；删除代码中使用printStackTrace()函数的地方，改为使用slf4j打印log；</p>
+<p>可用的其他办法：添加配置，在配置中设置只允许slf4j打印日志，不允许使用printStackTrace()函数打印日志。</p>
+<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>本次排查问题用到的知识</p>
+<h3 id="查看系统总线程数"><a href="#查看系统总线程数" class="headerlink" title="查看系统总线程数"></a>查看系统总线程数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/proc/sys/kernel/pid_max #查系统支持的最大线程数</span><br></pre></td></tr></table></figure>
+<h3 id="查看进程下的所有线程数"><a href="#查看进程下的所有线程数" class="headerlink" title="查看进程下的所有线程数"></a>查看进程下的所有线程数</h3><p>先用 jps -l 查看应用的PID</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps -l</span><br></pre></td></tr></table></figure>
+<p>查看该Pid(进程）下的线程数</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -Lf &#123;pid&#125; | wc -l</span><br></pre></td></tr></table></figure>
+<p>管道统计</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">| wc -l</span><br></pre></td></tr></table></figure>
+<h3 id="解压jar包-（可查看源码）"><a href="#解压jar包-（可查看源码）" class="headerlink" title="解压jar包 （可查看源码）"></a>解压jar包 （可查看源码）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jar -xvf test.jar</span><br></pre></td></tr></table></figure>
+<p>view jstack.log</p>
+<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh5hdfz83gj31d30u01kx.jpg" alt="3081595828752_.pic_hd"></p>
+<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>这个问题算是解决了，但是我还是有几个好奇的地方：</p>
+<ol>
+<li>如何定位到的问题？</li>
+<li>定位此类问题的思路和方法？</li>
+<li>jstack命令 如何使用？</li>
+</ol>
+<p>思路：</p>
+<ol>
+<li>以jstack为突破点，了解一下java堆栈分析</li>
+<li>请教同事</li>
+</ol>
+<p>未完待续。。。</p>
+<p><code>2020/8/1</code></p>
+<p>找到docker服务的pid</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>进入docker</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it &#123;pid&#125; /bin/bash</span><br></pre></td></tr></table></figure>
+<p>先使用jps命令查看运行的java应用</p>
+<p>jstack命令</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack -l 28367</span><br></pre></td></tr></table></figure>
 </section>
     <!-- Tags START -->
     
@@ -195,6 +225,13 @@
         
       </a>
     
+    
+      <a class="nav-right" href="/2020/08/03/LeetCode%E7%9C%8B%E5%88%B0%E4%B8%80%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/">
+        
+           LeetCode看到一个小技巧
+        
+        <span class="nav-arrow"> →</span>
+      </a>
     
   </div>
 
@@ -223,7 +260,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#问题描述"><span class="toc-nav-text">问题描述</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#可能的原因"><span class="toc-nav-text">可能的原因</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#解决思路"><span class="toc-nav-text">解决思路</span></a></li></ol>
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#问题描述"><span class="toc-nav-text">问题描述</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#可能的原因"><span class="toc-nav-text">可能的原因</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#尝试解决"><span class="toc-nav-text">尝试解决</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#总结"><span class="toc-nav-text">总结</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#补充"><span class="toc-nav-text">补充</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#查看系统总线程数"><span class="toc-nav-text">查看系统总线程数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#查看进程下的所有线程数"><span class="toc-nav-text">查看进程下的所有线程数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#解压jar包-（可查看源码）"><span class="toc-nav-text">解压jar包 （可查看源码）</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#后续"><span class="toc-nav-text">后续</span></a></li></ol>
     
   </div>
 </aside>
