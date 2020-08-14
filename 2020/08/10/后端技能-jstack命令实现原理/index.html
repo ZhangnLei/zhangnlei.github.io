@@ -10,7 +10,7 @@
   
   <title>
     
-      后端开发 - 记一次生产问题定位 | 张念磊的博客
+      后端技能 - jstack命令实现原理 | 张念磊的博客
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -131,8 +131,8 @@
 </header>
 
     <div id="article-banner">
-  <h2>后端开发 - 记一次生产问题定位</h2>
-  <p class="post-date">2020-07-25</p>
+  <h2>后端技能 - jstack命令实现原理</h2>
+  <p class="post-date">2020-08-10</p>
   <div class="arrow-down">
     <a href="javascript:;"></a>
   </div>
@@ -140,69 +140,12 @@
 <main class="app-body flex-box">
   <!-- Article START -->
   <article class="post-article">
-    <section class="markdown-content"><p>@auther <code>张念磊</code><br>@date <code>2020/7/25</code></p>
-<p>[toc]</p>
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>一个服务上线生产之后两天出现了三次问题</p>
-<p>详细征兆如下：</p>
-<ol>
-<li>刚出现此问题时，浏览器的一个请求发过去，开发者工具network一栏显示该请求状态一直是padding，会持续几分钟。</li>
-<li>网关服务打印了对应的请求。</li>
-<li>后台服务只打印了controller中的日志，没有打印service层的日志（日志级别debug，服务正常时会打印service层的日志）；</li>
-<li>通过重启服务可暂时解决该问题，不过一段时间后会复现。</li>
-</ol>
-<h2 id="可能的原因"><a href="#可能的原因" class="headerlink" title="可能的原因"></a>可能的原因</h2><p>前提：近期用户增多，有49家机构在使用该功能模块。</p>
-<ol>
-<li>服务器线程爆了：该服务器一共部署了31个微服务，还有一些对外提供的的其他服务，服务的总线程数量超过计算机的最大线程数量。</li>
-<li>服务器内存不够：服务器内存为32GB，现有未使用1GB（每个服务的运行内存设置为300M/512M/1G）。但服务日志没有爆出内存溢出异常，不能断定是该问题。</li>
-<li>编写的代码异常导致，但异常时服务不产生日志，无法定位问题。以前也会有此问题，程序异常，后台返回的异常原因是null，可能是该服务的config配置有误，没有准确捕捉并返回异常信息。</li>
-</ol>
-<h2 id="尝试解决"><a href="#尝试解决" class="headerlink" title="尝试解决"></a>尝试解决</h2><ol>
-<li>减小其他服务启动时配置的内存大小，使服务器内存处于健康状态 (已使用该方法，未能解决问题)</li>
-<li>限制每个微服务的线程数量，使其不能超过计算机的最大线程数。（经排查，服务的线程数已被限制，每个服务被限制为200，Linux系统的总线程数为13万，故排除此原因）</li>
-<li>为服务添加合理的全局异常捕获机制。（查看该工程的启动类中的try-catch代码块，发现catch到异常后直接返回null，没有做任何处理，在此为其添加一行代码，记录捕获到的异常到日志中）</li>
-<li>找同事协助分析。</li>
-</ol>
-<h2 id="定位到问题"><a href="#定位到问题" class="headerlink" title="定位到问题"></a>定位到问题</h2><p>log文件被锁住导致程序无响应。具体原因：应为项目中使用到了两种打印日志的方式，一是使用第三方的slf4j打印log；二是使用printStackTrace()函数打印日志</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>此次生产问题的原因：</p>
-<ol>
-<li>日志文件被锁住了。printStackTrace()函数打印日志，和使用slf4j打印日志时对日志文件资源的抢夺，导致文件被锁住；</li>
-<li>启动类中捕获了异常但是没有打印异常</li>
-</ol>
-<p>目前的解决办法：启动类中添加异常信息的打印；删除代码中使用printStackTrace()函数的地方，改为使用slf4j打印log；</p>
-<p>可用的其他办法：添加配置，在配置中设置只允许slf4j打印日志，不允许使用printStackTrace()函数打印日志。</p>
-<h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>本次排查问题用到的知识</p>
-<h3 id="查看系统总线程数"><a href="#查看系统总线程数" class="headerlink" title="查看系统总线程数"></a>查看系统总线程数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/proc/sys/kernel/pid_max #查系统支持的最大线程数</span><br></pre></td></tr></table></figure>
-<h3 id="查看进程下的所有线程数"><a href="#查看进程下的所有线程数" class="headerlink" title="查看进程下的所有线程数"></a>查看进程下的所有线程数</h3><p>先用 jps -l 查看应用的PID</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps -l</span><br></pre></td></tr></table></figure>
-<p>查看该Pid(进程）下的线程数</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -Lf &#123;pid&#125; | wc -l</span><br></pre></td></tr></table></figure>
-<p>管道统计</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">| wc -l</span><br></pre></td></tr></table></figure>
-<h3 id="解压jar包-（可查看源码）"><a href="#解压jar包-（可查看源码）" class="headerlink" title="解压jar包 （可查看源码）"></a>解压jar包 （可查看源码）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jar -xvf test.jar</span><br></pre></td></tr></table></figure>
-<p>view jstack.log</p>
-<p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh5hdfz83gj31d30u01kx.jpg" alt="3081595828752_.pic_hd"></p>
-<h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>这个问题算是解决了，但是我还是有几个好奇的地方：</p>
-<ol>
-<li>如何定位到的问题？</li>
-<li>定位此类问题的思路和方法？</li>
-<li>jstack命令 如何使用？</li>
-</ol>
-<p>思路：</p>
-<ol>
-<li>以jstack为突破点，了解一下java堆栈分析</li>
-<li>请教同事</li>
-</ol>
-<p>未完待续。。。</p>
-</section>
+    <section class="markdown-content"></section>
     <!-- Tags START -->
     
       <div class="tags">
         <span>Tags:</span>
         
-  <a href="/tags#Java" >
-    <span class="tag-code">Java</span>
-  </a>
-
   <a href="/tags#JVM" >
     <span class="tag-code">JVM</span>
   </a>
@@ -219,17 +162,17 @@
   <div class="nav-container">
     <!-- reverse left and right to put prev and next in a more logic postition -->
     
-      <a class="nav-left" href="/2020/07/22/LeetCode-153-%E5%AF%BB%E6%89%BE%E6%97%8B%E8%BD%AC%E6%8E%92%E5%BA%8F%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E6%9C%80%E5%B0%8F%E5%80%BC/">
+      <a class="nav-left" href="/2020/08/10/%E5%90%8E%E7%AB%AF%E6%8A%80%E8%83%BD-%E4%BD%BF%E7%94%A8jstack%E5%91%BD%E4%BB%A4%E5%AE%9A%E4%BD%8DJVM%E5%BC%82%E5%B8%B8/">
         <span class="nav-arrow">← </span>
         
-          LeetCode 153. 寻找旋转排序数组中的最小值
+          后端技能 - 使用jstack命令定位JVM异常
         
       </a>
     
     
-      <a class="nav-right" href="/2020/08/03/LeetCode%E7%9C%8B%E5%88%B0%E4%B8%80%E4%B8%AA%E5%B0%8F%E6%8A%80%E5%B7%A7/">
+      <a class="nav-right" href="/2020/08/10/%E5%90%8E%E7%AB%AF%E6%8A%80%E8%83%BD-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAjstack/">
         
-           LeetCode看到一个小技巧
+          后端技能 - 如何实现一个jstack
         
         <span class="nav-arrow"> →</span>
       </a>
@@ -261,7 +204,7 @@
   <div class="toc-main">
     <strong class="toc-title">Catalog</strong>
     
-      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#问题描述"><span class="toc-nav-text">问题描述</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#可能的原因"><span class="toc-nav-text">可能的原因</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#尝试解决"><span class="toc-nav-text">尝试解决</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#定位到问题"><span class="toc-nav-text">定位到问题</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#最后"><span class="toc-nav-text">最后</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#补充"><span class="toc-nav-text">补充</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#查看系统总线程数"><span class="toc-nav-text">查看系统总线程数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#查看进程下的所有线程数"><span class="toc-nav-text">查看进程下的所有线程数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#解压jar包-（可查看源码）"><span class="toc-nav-text">解压jar包 （可查看源码）</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#后续"><span class="toc-nav-text">后续</span></a></li></ol>
+      <ol class="nav">none</ol>
     
   </div>
 </aside>
@@ -271,7 +214,7 @@
 
 <script>
   (function () {
-    var url = 'http://yoursite.com/2020/07/25/后端开发-记一次生产问题定位/';
+    var url = 'http://yoursite.com/2020/08/10/后端技能-jstack命令实现原理/';
     var banner = ''
     if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
       $('#article-banner').css({
@@ -333,7 +276,7 @@
     var gitmentConfig = "zhangnlei";
     if (gitmentConfig !== 'undefined') {
       var gitment = new Gitment({
-        id: "后端开发 - 记一次生产问题定位",
+        id: "后端技能 - jstack命令实现原理",
         owner: "zhangnlei",
         repo: "zhangnlei.github.io",
         oauth: {

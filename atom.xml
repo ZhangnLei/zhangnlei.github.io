@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-08-03T02:29:09.767Z</updated>
+  <updated>2020-08-10T03:42:49.110Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,91 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>后端技能 - 如何实现一个jstack</title>
+    <link href="http://yoursite.com/2020/08/10/%E5%90%8E%E7%AB%AF%E6%8A%80%E8%83%BD-%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AAjstack/"/>
+    <id>http://yoursite.com/2020/08/10/后端技能-如何实现一个jstack/</id>
+    <published>2020-08-10T03:39:20.000Z</published>
+    <updated>2020-08-10T03:42:49.110Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="JVM" scheme="http://yoursite.com/tags/JVM/"/>
+    
+      <category term="jstack" scheme="http://yoursite.com/tags/jstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>后端技能 - jstack命令实现原理</title>
+    <link href="http://yoursite.com/2020/08/10/%E5%90%8E%E7%AB%AF%E6%8A%80%E8%83%BD-jstack%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
+    <id>http://yoursite.com/2020/08/10/后端技能-jstack命令实现原理/</id>
+    <published>2020-08-10T03:38:52.000Z</published>
+    <updated>2020-08-10T03:39:51.805Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="JVM" scheme="http://yoursite.com/tags/JVM/"/>
+    
+      <category term="jstack" scheme="http://yoursite.com/tags/jstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>后端技能 - 使用jstack命令定位JVM异常</title>
+    <link href="http://yoursite.com/2020/08/10/%E5%90%8E%E7%AB%AF%E6%8A%80%E8%83%BD-%E4%BD%BF%E7%94%A8jstack%E5%91%BD%E4%BB%A4%E5%AE%9A%E4%BD%8DJVM%E5%BC%82%E5%B8%B8/"/>
+    <id>http://yoursite.com/2020/08/10/后端技能-使用jstack命令定位JVM异常/</id>
+    <published>2020-08-10T03:38:34.000Z</published>
+    <updated>2020-08-10T09:57:03.914Z</updated>
+    
+    <content type="html"><![CDATA[<p>[toc]</p><p><code>2020/8/1</code></p><h2 id="一-找到出错的服务"><a href="#一-找到出错的服务" class="headerlink" title="一. 找到出错的服务"></a>一. 找到出错的服务</h2><p>docker 部署的方式</p><p>找到docker服务的pid</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure><p>进入docker</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it &#123;pid&#125; /bin/bash</span><br></pre></td></tr></table></figure><p>先使用jps命令查看运行的java应用</p><h3 id="jstack命令"><a href="#jstack命令" class="headerlink" title="jstack命令"></a>jstack命令</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack -l 28367</span><br></pre></td></tr></table></figure><p><code>2020/8/10</code></p><p>jstack主要用来查看某个Java进程内的线程堆栈信息</p><ol><li><p>jps 查看java进程pid</p></li><li><p>top -Hp pid 找出该进程内最耗费CPU的线程</p></li><li>printf “%x\n” 1787 得到十六进制值为6fb</li><li>jstack pid &gt; file.log 通过jstack 把该进程的所有线程堆栈打印到file.log中</li><li>vi file.log 打开文件搜索 6fb 找到具体出问题的代码</li></ol><h2 id="jstack统计线程数"><a href="#jstack统计线程数" class="headerlink" title="jstack统计线程数"></a>jstack统计线程数</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/opt/java8/bin/jstack -l 28367 | grep 'java.lang.Thread.State' | wc -l</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;[toc]&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;2020/8/1&lt;/code&gt;&lt;/p&gt;
+&lt;h2 id=&quot;一-找到出错的服务&quot;&gt;&lt;a href=&quot;#一-找到出错的服务&quot; class=&quot;headerlink&quot; title=&quot;一. 找到出错的服务&quot;&gt;&lt;/a&gt;一. 找到出错的服务&lt;/h2&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="JVM" scheme="http://yoursite.com/tags/JVM/"/>
+    
+      <category term="jstack" scheme="http://yoursite.com/tags/jstack/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Linux-find命令</title>
+    <link href="http://yoursite.com/2020/08/05/Linux-find%E5%91%BD%E4%BB%A4/"/>
+    <id>http://yoursite.com/2020/08/05/Linux-find命令/</id>
+    <published>2020-08-05T01:24:11.000Z</published>
+    <updated>2020-08-14T03:04:19.553Z</updated>
+    
+    <content type="html"><![CDATA[<p>[toc]</p><h1 id="find"><a href="#find" class="headerlink" title="find"></a>find</h1><h2 id="扩展元字符"><a href="#扩展元字符" class="headerlink" title="扩展元字符"></a>扩展元字符</h2><h2 id="find-1"><a href="#find-1" class="headerlink" title="find"></a>find</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">touch &#x2F;tmp&#x2F;&#123;1...9&#125;.txt</span><br><span class="line">ls &#x2F;tmp&#x2F;*.txt</span><br><span class="line">find *txt -exec rm -v &#123;&#125;\;</span><br><span class="line">cut -d &quot;:&quot; -f7 &#x2F;etc&#x2F;passwd | sort |uniq -c</span><br></pre></td></tr></table></figure><p>来源：极客时间-65Linux 87讲-find</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;[toc]&lt;/p&gt;
+&lt;h1 id=&quot;find&quot;&gt;&lt;a href=&quot;#find&quot; class=&quot;headerlink&quot; title=&quot;find&quot;&gt;&lt;/a&gt;find&lt;/h1&gt;&lt;h2 id=&quot;扩展元字符&quot;&gt;&lt;a href=&quot;#扩展元字符&quot; class=&quot;headerlink&quot; t
+      
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>历史博客汇总</title>
@@ -65,9 +150,9 @@
     <link href="http://yoursite.com/2020/07/25/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91-%E8%AE%B0%E4%B8%80%E6%AC%A1%E7%94%9F%E4%BA%A7%E9%97%AE%E9%A2%98%E5%AE%9A%E4%BD%8D/"/>
     <id>http://yoursite.com/2020/07/25/后端开发-记一次生产问题定位/</id>
     <published>2020-07-25T04:03:54.000Z</published>
-    <updated>2020-08-01T09:14:19.041Z</updated>
+    <updated>2020-08-10T09:46:46.861Z</updated>
     
-    <content type="html"><![CDATA[<p>@auther <code>张念磊</code><br>@date <code>2020/7/25</code></p><p>[toc]</p><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>一个服务上线生产之后两天出现了三次问题</p><p>详细征兆如下：</p><ol><li>刚出现此问题时，浏览器的一个请求发过去，开发者工具network一栏显示该请求状态一直是padding，会持续几分钟。</li><li>网关服务打印了对应的请求。</li><li>后台服务只打印了controller中的日志，没有打印service层的日志（日志级别info，服务正常时会打印service层的日志）；</li><li>通过重启服务可暂时解决该问题，不过一段时间后会复现。</li></ol><h2 id="可能的原因"><a href="#可能的原因" class="headerlink" title="可能的原因"></a>可能的原因</h2><p>前提：近期用户增多，有49家机构在使用该功能模块。</p><ol><li>服务器线程爆了：该服务器一共部署了31个微服务，还有一些对外提供的的其他服务，服务的总线程数量超过计算机的最大线程数量。</li><li>服务器内存不够：服务器内存为32GB，现有未使用1GB（每个服务的运行内存设置为300M/512M/1G）。但服务日志没有爆出内存溢出异常，不能断定是该问题。</li><li>编写的代码异常导致，但异常时服务不产生日志，无法定位问题。以前也会有此问题，程序异常，后台返回的异常原因是null，可能是该服务的config配置有误，没有准确捕捉并返回异常信息。</li></ol><h2 id="尝试解决"><a href="#尝试解决" class="headerlink" title="尝试解决"></a>尝试解决</h2><ol><li>减小其他服务启动时配置的内存大小，使服务器内存处于健康状态 (已使用该方法，未能解决问题)</li><li>限制每个微服务的线程数量，使其不能超过计算机的最大线程数。（经排查，服务的线程数已被限制，每个服务被限制为200，Linux系统的总线程数为13万，故排除此原因）</li><li>为服务添加合理的全局异常捕获机制。（查看该工程的启动类中的try-catch代码块，发现catch到异常后直接返回null，没有做任何处理，在此为其添加一行代码，记录捕获到的异常到日志中）</li><li>找同事协助分析。（找三位同事，其中一位定位到原因：log文件死锁了。具体原因：应为项目中使用到了两种打印日志的方式，一是使用第三方的slf4j打印log；二是使用printStackTrace()函数打印日志）</li></ol><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>此次生产问题的原因：</p><ol><li>日志文件被锁住了。printStackTrace()函数打印日志，和使用slf4j打印日志时对日志文件资源的抢夺，导致文件被锁住；</li><li>启动类中捕获了异常但是没有打印异常</li></ol><p>目前的解决办法：启动类中添加异常信息的打印；删除代码中使用printStackTrace()函数的地方，改为使用slf4j打印log；</p><p>可用的其他办法：添加配置，在配置中设置只允许slf4j打印日志，不允许使用printStackTrace()函数打印日志。</p><h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>本次排查问题用到的知识</p><h3 id="查看系统总线程数"><a href="#查看系统总线程数" class="headerlink" title="查看系统总线程数"></a>查看系统总线程数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/proc/sys/kernel/pid_max #查系统支持的最大线程数</span><br></pre></td></tr></table></figure><h3 id="查看进程下的所有线程数"><a href="#查看进程下的所有线程数" class="headerlink" title="查看进程下的所有线程数"></a>查看进程下的所有线程数</h3><p>先用 jps -l 查看应用的PID</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps -l</span><br></pre></td></tr></table></figure><p>查看该Pid(进程）下的线程数</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -Lf &#123;pid&#125; | wc -l</span><br></pre></td></tr></table></figure><p>管道统计</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">| wc -l</span><br></pre></td></tr></table></figure><h3 id="解压jar包-（可查看源码）"><a href="#解压jar包-（可查看源码）" class="headerlink" title="解压jar包 （可查看源码）"></a>解压jar包 （可查看源码）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jar -xvf test.jar</span><br></pre></td></tr></table></figure><p>view jstack.log</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh5hdfz83gj31d30u01kx.jpg" alt="3081595828752_.pic_hd"></p><h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>这个问题算是解决了，但是我还是有几个好奇的地方：</p><ol><li>如何定位到的问题？</li><li>定位此类问题的思路和方法？</li><li>jstack命令 如何使用？</li></ol><p>思路：</p><ol><li>以jstack为突破点，了解一下java堆栈分析</li><li>请教同事</li></ol><p>未完待续。。。</p><p><code>2020/8/1</code></p><p>找到docker服务的pid</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure><p>进入docker</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker exec -it &#123;pid&#125; /bin/bash</span><br></pre></td></tr></table></figure><p>先使用jps命令查看运行的java应用</p><p>jstack命令</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack -l 28367</span><br></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<p>@auther <code>张念磊</code><br>@date <code>2020/7/25</code></p><p>[toc]</p><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>一个服务上线生产之后两天出现了三次问题</p><p>详细征兆如下：</p><ol><li>刚出现此问题时，浏览器的一个请求发过去，开发者工具network一栏显示该请求状态一直是padding，会持续几分钟。</li><li>网关服务打印了对应的请求。</li><li>后台服务只打印了controller中的日志，没有打印service层的日志（日志级别debug，服务正常时会打印service层的日志）；</li><li>通过重启服务可暂时解决该问题，不过一段时间后会复现。</li></ol><h2 id="可能的原因"><a href="#可能的原因" class="headerlink" title="可能的原因"></a>可能的原因</h2><p>前提：近期用户增多，有49家机构在使用该功能模块。</p><ol><li>服务器线程爆了：该服务器一共部署了31个微服务，还有一些对外提供的的其他服务，服务的总线程数量超过计算机的最大线程数量。</li><li>服务器内存不够：服务器内存为32GB，现有未使用1GB（每个服务的运行内存设置为300M/512M/1G）。但服务日志没有爆出内存溢出异常，不能断定是该问题。</li><li>编写的代码异常导致，但异常时服务不产生日志，无法定位问题。以前也会有此问题，程序异常，后台返回的异常原因是null，可能是该服务的config配置有误，没有准确捕捉并返回异常信息。</li></ol><h2 id="尝试解决"><a href="#尝试解决" class="headerlink" title="尝试解决"></a>尝试解决</h2><ol><li>减小其他服务启动时配置的内存大小，使服务器内存处于健康状态 (已使用该方法，未能解决问题)</li><li>限制每个微服务的线程数量，使其不能超过计算机的最大线程数。（经排查，服务的线程数已被限制，每个服务被限制为200，Linux系统的总线程数为13万，故排除此原因）</li><li>为服务添加合理的全局异常捕获机制。（查看该工程的启动类中的try-catch代码块，发现catch到异常后直接返回null，没有做任何处理，在此为其添加一行代码，记录捕获到的异常到日志中）</li><li>找同事协助分析。</li></ol><h2 id="定位到问题"><a href="#定位到问题" class="headerlink" title="定位到问题"></a>定位到问题</h2><p>log文件被锁住导致程序无响应。具体原因：应为项目中使用到了两种打印日志的方式，一是使用第三方的slf4j打印log；二是使用printStackTrace()函数打印日志</p><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>此次生产问题的原因：</p><ol><li>日志文件被锁住了。printStackTrace()函数打印日志，和使用slf4j打印日志时对日志文件资源的抢夺，导致文件被锁住；</li><li>启动类中捕获了异常但是没有打印异常</li></ol><p>目前的解决办法：启动类中添加异常信息的打印；删除代码中使用printStackTrace()函数的地方，改为使用slf4j打印log；</p><p>可用的其他办法：添加配置，在配置中设置只允许slf4j打印日志，不允许使用printStackTrace()函数打印日志。</p><h2 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h2><p>本次排查问题用到的知识</p><h3 id="查看系统总线程数"><a href="#查看系统总线程数" class="headerlink" title="查看系统总线程数"></a>查看系统总线程数</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/proc/sys/kernel/pid_max #查系统支持的最大线程数</span><br></pre></td></tr></table></figure><h3 id="查看进程下的所有线程数"><a href="#查看进程下的所有线程数" class="headerlink" title="查看进程下的所有线程数"></a>查看进程下的所有线程数</h3><p>先用 jps -l 查看应用的PID</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps -l</span><br></pre></td></tr></table></figure><p>查看该Pid(进程）下的线程数</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -Lf &#123;pid&#125; | wc -l</span><br></pre></td></tr></table></figure><p>管道统计</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">| wc -l</span><br></pre></td></tr></table></figure><h3 id="解压jar包-（可查看源码）"><a href="#解压jar包-（可查看源码）" class="headerlink" title="解压jar包 （可查看源码）"></a>解压jar包 （可查看源码）</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jar -xvf test.jar</span><br></pre></td></tr></table></figure><p>view jstack.log</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1gh5hdfz83gj31d30u01kx.jpg" alt="3081595828752_.pic_hd"></p><h2 id="后续"><a href="#后续" class="headerlink" title="后续"></a>后续</h2><p>这个问题算是解决了，但是我还是有几个好奇的地方：</p><ol><li>如何定位到的问题？</li><li>定位此类问题的思路和方法？</li><li>jstack命令 如何使用？</li></ol><p>思路：</p><ol><li>以jstack为突破点，了解一下java堆栈分析</li><li>请教同事</li></ol><p>未完待续。。。</p>]]></content>
     
     <summary type="html">
     
@@ -82,6 +167,10 @@
     
     
       <category term="Java" scheme="http://yoursite.com/tags/Java/"/>
+    
+      <category term="JVM" scheme="http://yoursite.com/tags/JVM/"/>
+    
+      <category term="jstack" scheme="http://yoursite.com/tags/jstack/"/>
     
   </entry>
   
@@ -426,105 +515,6 @@
     
     </summary>
     
-    
-  </entry>
-  
-  <entry>
-    <title>清单革命 - 怎样使清单更有效？</title>
-    <link href="http://yoursite.com/2020/05/13/%E6%B8%85%E5%8D%95%E9%9D%A9%E5%91%BD-%E6%80%8E%E6%A0%B7%E4%BD%BF%E6%B8%85%E5%8D%95%E6%9B%B4%E6%9C%89%E6%95%88%EF%BC%9F/"/>
-    <id>http://yoursite.com/2020/05/13/清单革命-怎样使清单更有效？/</id>
-    <published>2020-05-13T00:45:41.000Z</published>
-    <updated>2020-05-13T01:58:04.417Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="清单革命-怎样使清单更有效？"><a href="#清单革命-怎样使清单更有效？" class="headerlink" title="清单革命 - 怎样使清单更有效？"></a>清单革命 - 怎样使清单更有效？</h1><p>@auther <code>张念磊</code><br>@date <code>2020/5/13</code></p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geqklx050gj314x0u0q9u.jpg" alt="清单革命导图"></p><p>[toc]</p><h2 id="零、前言"><a href="#零、前言" class="headerlink" title="零、前言"></a>零、前言</h2><p><code>TODO</code> 引用一句</p><blockquote><p>金融巨头曾经说过，他之所以能比其他人投资更成功，不仅仅因为他有正确的决策，还有一个很重要的原因就是他能够避免犯一些愚蠢的错误。</p></blockquote><p>作者：阿图.葛文德 《时代周刊》“全球100位影响力人物”榜单的唯一一名医生</p><p>一张手术清单，让原本经常发生的手术感染率从11%下降到0；</p><h2 id="一、人为什么会犯错？"><a href="#一、人为什么会犯错？" class="headerlink" title="一、人为什么会犯错？"></a>一、人为什么会犯错？</h2><p>人的错误可以分为两种：一种是无知之错，一种是无能之错。</p><p>无知之错，说的是因为没有掌握正确的知识， 没有相关的常识犯的错。</p><p>无能之错，说的是虽然掌握的正确的知识，但是没有正确的使用而犯下的错。</p><p>比如飞行员知道起飞前的所有程序，但是起飞前一个事情忘记做一个操作导致飞机失事。</p><p>工作生活中的无能之错：开会记错时间、</p><h2 id="二、为什么要使用清单？"><a href="#二、为什么要使用清单？" class="headerlink" title="二、为什么要使用清单？"></a>二、为什么要使用清单？</h2><h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p><code>规避错误</code></p><p>发挥作用的两点原因：</p><p>1）把大脑不擅长的记忆工作外包下来</p><p>2）清单更可靠，通过可视化和强限制性执行来确保完成度</p><h3 id="使用清单的好处？"><a href="#使用清单的好处？" class="headerlink" title="使用清单的好处？"></a>使用清单的好处？</h3><p>避免无能之错</p><p>清单是如何避免无能之错？</p><p>执行清单 解决简单问题</p><p>核查清单 应对复杂问题</p><p>沟通清单 应对不确定性的复杂问题</p><h2 id="三、如何使用清单？"><a href="#三、如何使用清单？" class="headerlink" title="三、如何使用清单？"></a>三、如何使用清单？</h2><h3 id="制定"><a href="#制定" class="headerlink" title="制定"></a>制定</h3><p><code>制定清单的原则</code>：</p><p> <strong>1.</strong> <strong>简单高效可测</strong></p><p> <strong>2.</strong> <strong>设置明确的检查点</strong></p><p> 设置时间：</p><ol><li><p>前</p></li><li><p>中</p></li><li><p>后</p></li><li><p>意外发生时</p><p><strong>3.</strong> <strong>及时更新清单</strong></p></li></ol><h3 id="执行"><a href="#执行" class="headerlink" title="执行"></a>执行</h3><p>参考：</p><p><code>得到App 每天听本书 - 《清单革命》</code></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;清单革命-怎样使清单更有效？&quot;&gt;&lt;a href=&quot;#清单革命-怎样使清单更有效？&quot; class=&quot;headerlink&quot; title=&quot;清单革命 - 怎样使清单更有效？&quot;&gt;&lt;/a&gt;清单革命 - 怎样使清单更有效？&lt;/h1&gt;&lt;p&gt;@auther &lt;code&gt;张念磊&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="清单" scheme="http://yoursite.com/tags/%E6%B8%85%E5%8D%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>后端开发 - SpringBoot项目名中如何处理service层的异常？</title>
-    <link href="http://yoursite.com/2020/05/04/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91-SpringBoot%E9%A1%B9%E7%9B%AE%E5%90%8D%E4%B8%AD%E5%A6%82%E4%BD%95%E5%A4%84%E7%90%86service%E5%B1%82%E7%9A%84%E5%BC%82%E5%B8%B8%EF%BC%9F/"/>
-    <id>http://yoursite.com/2020/05/04/后端开发-SpringBoot项目名中如何处理service层的异常？/</id>
-    <published>2020-05-04T03:07:19.000Z</published>
-    <updated>2020-05-05T09:14:53.181Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="后端开发-SpringBoot项目名中如何处理service层的异常？"><a href="#后端开发-SpringBoot项目名中如何处理service层的异常？" class="headerlink" title="后端开发 - SpringBoot项目名中如何处理service层的异常？"></a>后端开发 - SpringBoot项目名中如何处理service层的异常？</h1><p>[toc]</p><p>先说自己犯的错误：</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 非常一长串逻辑代码</span></span><br><span class="line"><span class="comment">     **/</span></span><br><span class="line">...</span><br><span class="line">    ...</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">logger.error(<span class="string">"&gt;&gt;&gt;className.methodsName,异常原因：&#123;&#125;"</span>, e.getMessage());</span><br><span class="line"><span class="keyword">return</span> CommonMsgUtils.getErrorCommonMsg(commonMsg, ErrorCodeEnum.DATABASE_EXCEPTION);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>阿里巴巴编码规范 第二章 - 异常处理：</p><blockquote><p>/3. 【强制】catch 时请分清稳定代码和非稳定代码，稳定代码指的是无论如何不会出错的代码。 对于非稳定代码的 catch 尽可能进行区分异常类型，再做对应的异常处理。 说明:对大段代码进行 try-catch，使程序无法根据不同的异常做出正确的应激反应，也不利 于定位问题，这是一种不负责任的表现。 正例:用户注册的场景中，如果用户输入非法字符，或用户名称已存在，或用户输入密码过于 简单，在程序上作出分门别类的判断，并提示给用户。</p></blockquote><blockquote><p>/4. 【强制】捕获异常是为了处理它，不要捕获了却什么都不处理而抛弃之，如果不想处理它，请 将该异常抛给它的调用者。最外层的业务使用者，必须处理异常，将其转化为用户可以理解的 内容。</p></blockquote><blockquote><p>/5. 【强制】有 try 块放到了事务代码中，catch 异常后，如果需要回滚事务，一定要注意手动回 滚事务。</p></blockquote><blockquote><p>/6)  级联调用obj.getA().getB().getC();一连串调用，易产生NPE。</p><p>正例:使用 JDK8 的 Optional 类来防止 NPE 问题。</p></blockquote><p>日志：</p><blockquote><p>/4. 【强制】对 trace/debug/info 级别的日志输出，必须使用条件输出形式或者使用占位符的方 式。</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//说明(反例):</span></span><br><span class="line">logger.debug(<span class="string">"Processing trade with id: "</span> + id + <span class="string">" and symbol: "</span> + symbol);</span><br></pre></td></tr></table></figure><p> 如果日志级别是 warn，上述日志不会打印，但是会执行字符串拼接操作，如果 symbol 是对象， 会执行 toString()方法，浪费了系统资源，执行了上述操作，最终日志却没有打印。 </p><p>建设采用如下方式:</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 正例1:(条件)</span></span><br><span class="line"><span class="keyword">if</span> (logger.isDebugEnabled()) &#123;</span><br><span class="line">logger.debug(<span class="string">"Processing trade with id: "</span> + id + <span class="string">" and symbol: "</span> + symbol);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 正例2:(占位符)</span></span><br><span class="line">logger.debug(<span class="string">"Processing trade with id: &#123;&#125; and symbol : &#123;&#125; "</span>, id, symbol);</span><br></pre></td></tr></table></figure></blockquote><p>参考：</p><p><a href="https://www.cnblogs.com/gujiazhouwang/p/12028713.html" target="_blank" rel="noopener">https://www.cnblogs.com/gujiazhouwang/p/12028713.html</a></p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;后端开发-SpringBoot项目名中如何处理service层的异常？&quot;&gt;&lt;a href=&quot;#后端开发-SpringBoot项目名中如何处理service层的异常？&quot; class=&quot;headerlink&quot; title=&quot;后端开发 - SpringBoot项目名中如
-      
-    
-    </summary>
-    
-    
-      <category term="springboot" scheme="http://yoursite.com/tags/springboot/"/>
-    
-      <category term="异常处理" scheme="http://yoursite.com/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>使用脚本解放双手 - 批量更新git分支</title>
-    <link href="http://yoursite.com/2020/04/29/%E4%BD%BF%E7%94%A8%E8%84%9A%E6%9C%AC%E8%A7%A3%E6%94%BE%E5%8F%8C%E6%89%8B-%E6%89%B9%E9%87%8F%E6%9B%B4%E6%96%B0git%E5%88%86%E6%94%AF/"/>
-    <id>http://yoursite.com/2020/04/29/使用脚本解放双手-批量更新git分支/</id>
-    <published>2020-04-29T01:42:09.000Z</published>
-    <updated>2020-04-29T02:29:35.754Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="使用脚本批量更新git分支"><a href="#使用脚本批量更新git分支" class="headerlink" title="使用脚本批量更新git分支"></a>使用脚本批量更新git分支</h1><p>@auther <code>张念磊</code><br>@date <code>2020/4/29</code></p><p>[toc]</p><h3 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h3><p>使用脚本，解放双手</p><h3 id="先上代码"><a href="#先上代码" class="headerlink" title="先上代码"></a>先上代码</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash">!/bin/bash</span></span><br><span class="line"></span><br><span class="line">function readfile ()</span><br><span class="line">&#123;</span><br><span class="line"> for file in `ls $1`</span><br><span class="line"> do</span><br><span class="line"><span class="meta">#</span><span class="bash"> 判断是否是文件夹，如果是文件夹则删除文件夹中的 dev <span class="built_in">test</span> release 分支</span></span><br><span class="line"> if [ -d $1"/"$file ]</span><br><span class="line"> then</span><br><span class="line">  cd $&#123;file&#125;</span><br><span class="line">  pwd</span><br><span class="line">  git checkout master;</span><br><span class="line">  git branch -D dev; git branch -D test; git branch -D release;</span><br><span class="line"><span class="meta">  #</span><span class="bash"> git checkout master; git pull;</span></span><br><span class="line">  cd ..</span><br><span class="line"> fi</span><br><span class="line"> done</span><br><span class="line">&#125;</span><br><span class="line">readfile "./"</span><br><span class="line"></span><br><span class="line">echo '完美的运行！'</span><br></pre></td></tr></table></figure><p>代码思路：</p><ol><li>for循环遍历当前文件夹下的文件</li><li>判断每个文件的类型是否是文件夹</li><li>如果是文件夹则进入该文件夹中，</li><li>切换master分支，避免下面一步时删除分支失败（git 删除分支时是不能删除当前所在的分支的，例如 当前在dev分支，执行git branch -D dev 时会提示Cannot delete branch ‘dev’…）</li><li>删除文件夹中的 dev test release 分支</li><li>最后打印运行结束</li></ol><h3 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h3><ol><li>准备shell<ol><li>新建文本文档，将以上代码copy进来，保存命名为<code>clear-git-branch.sh</code> 一定要以<code>.sh</code>为文件后缀</li><li>将文件放在需要批量更新代码的文件夹中</li></ol></li></ol><p>文件结构大概长这样：</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlgy1geaeceaslhj30ty0h6q7s.jpg" alt="image-20200429094911638"></p><ol start="2"><li><p>运行脚本</p><p><code>window平台：</code></p><p>​    方式1：双击运行shell脚本；</p><p>​    方式2：使用GitBash工具</p><p>​        先切换到存放代码的目录，然后执行代码：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./clear-git-branch.sh</span><br></pre></td></tr></table></figure><p><code>macOS或Linux平台：</code></p><p>需先给shell脚本添加执行的权限：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chmod +x clear-git-branch.sh</span><br></pre></td></tr></table></figure><p>然后运行</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./clear-git-branch.sh</span><br></pre></td></tr></table></figure></li></ol><p>运行效果:<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> ./clear-git-branch.sh</span></span><br><span class="line">/f/code/sycode/dcit-serxxxxxxxx</span><br><span class="line">Already on 'master'</span><br><span class="line">Your branch is up to date with 'origin/master'.</span><br><span class="line">Deleted branch dev (was 6c999e7).</span><br><span class="line">Deleted branch test (was a4238eb).</span><br><span class="line">Deleted branch release (was 6603884).</span><br><span class="line">Switched to a new branch 'dev'</span><br><span class="line">Branch 'dev' set up to track remote branch 'dev' from 'origin'.</span><br><span class="line">Switched to a new branch 'test'</span><br><span class="line">Branch 'test' set up to track remote branch 'test' from 'origin'.</span><br><span class="line">Switched to a new branch 'release'</span><br><span class="line">Branch 'release' set up to track remote branch 'release' from 'origin'.</span><br><span class="line">Switched to branch 'master'</span><br><span class="line">Your branch is up to date with 'origin/master'.</span><br><span class="line">....</span><br></pre></td></tr></table></figure></p><h3 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h3><ol><li><p>该脚本会把所有仓库的分支切换到master分支，如后续开发需要自己手动切回自己的特性分支。</p></li><li><p>可能会有失败的案例，当你的分支在dev/test/release且有正在编辑的代码，则会删除失败。</p></li></ol><p>对于这种情况需要自行判断是否保存并加以处理。</p><h3 id="大功告成"><a href="#大功告成" class="headerlink" title="大功告成"></a>大功告成</h3><p>完美，哈哈。</p><p>刚开始学习shell，有错误还请大佬指出。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;h1 id=&quot;使用脚本批量更新git分支&quot;&gt;&lt;a href=&quot;#使用脚本批量更新git分支&quot; class=&quot;headerlink&quot; title=&quot;使用脚本批量更新git分支&quot;&gt;&lt;/a&gt;使用脚本批量更新git分支&lt;/h1&gt;&lt;p&gt;@auther &lt;code&gt;张念磊&lt;/code&gt;&lt;b
-      
-    
-    </summary>
-    
-    
-      <category term="shell" scheme="http://yoursite.com/tags/shell/"/>
-    
-      <category term="git" scheme="http://yoursite.com/tags/git/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>后端开发 - 发现一个SQL的新技能</title>
-    <link href="http://yoursite.com/2020/04/28/%E5%90%8E%E7%AB%AF%E5%BC%80%E5%8F%91-%E5%8F%91%E7%8E%B0%E4%B8%80%E4%B8%AASQL%E7%9A%84%E6%96%B0%E6%8A%80%E8%83%BD/"/>
-    <id>http://yoursite.com/2020/04/28/后端开发-发现一个SQL的新技能/</id>
-    <published>2020-04-28T04:40:36.000Z</published>
-    <updated>2020-04-28T05:07:40.032Z</updated>
-    
-    <content type="html"><![CDATA[<blockquote><p> 不是发明创造，以前没见过这种用法，写下来记录一下。</p></blockquote><h2 id="起因"><a href="#起因" class="headerlink" title="起因"></a>起因</h2><p>需要写一个添加根据用户<code>真实姓名</code>或<code>用户名</code>或<code>工号</code>模糊查询用户信息的接口</p><p>但是公司用了<code>shardingjdbc</code>且是较低版本，不支持用 OR关键字，短时间内不可能将组件升级。</p><h2 id="怎么思路"><a href="#怎么思路" class="headerlink" title="怎么思路"></a>怎么思路</h2><p>使用concat() 函数</p><h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">concat( real_name, '*', user_name, '*', work_no ) LIKE concat('%',#&#123;searchParam&#125;, '%' )</span><br></pre></td></tr></table></figure><p>哈哈，很简单，很神奇。</p>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;blockquote&gt;
-&lt;p&gt; 不是发明创造，以前没见过这种用法，写下来记录一下。&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h2 id=&quot;起因&quot;&gt;&lt;a href=&quot;#起因&quot; class=&quot;headerlink&quot; title=&quot;起因&quot;&gt;&lt;/a&gt;起因&lt;/h2&gt;&lt;p&gt;需要写一个添加根据
-      
-    
-    </summary>
-    
-    
-      <category term="SQL" scheme="http://yoursite.com/tags/SQL/"/>
     
   </entry>
   
